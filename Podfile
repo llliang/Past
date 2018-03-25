@@ -6,4 +6,5 @@ target ‘Past’ do
     pod 'Kingfisher'
     pod 'Alamofire'
     pod 'SQLite.swift'
+
 end
