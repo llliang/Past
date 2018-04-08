@@ -13,7 +13,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         window = UIWindow(frame: UIScreen.main.bounds)
@@ -21,6 +20,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.backgroundColor = UIColor.white
     
         self.initializeRootViewController()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(initializeRootViewController), name: PUserSessionChanged, object: nil)
+     
         return true
     }
 
@@ -48,11 +50,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     /// MARK :
     
-    func initializeRootViewController() {
-        if PUserSession.shareInstance().validSession() {
-            
+    @objc func initializeRootViewController() {
+        if !PUserSession.instance.validSession() {
+            window?.rootViewController = PNavigationController(rootViewController: PProfileEditViewController())
         } else {
-            window?.rootViewController = PLoginViewController()
+            window?.rootViewController = PNavigationController(rootViewController: PLoginViewController())
         }
     }
 

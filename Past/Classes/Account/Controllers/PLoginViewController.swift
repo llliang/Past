@@ -11,9 +11,16 @@ import UIKit
 class PLoginViewController: PBaseViewController {
 
     var containerView: UIView?
-    var phoneTextField: PTextField?
+    var mobileTextField: PTextField?
     var codeTextField: PTextField?
     var codeButton: UIButton?
+    
+    var timer: Timer?
+    var countDownNumber: Int = 59
+    
+    deinit {
+        self.invalidateTimer()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,16 +48,16 @@ class PLoginViewController: PBaseViewController {
         label.textAlignment = .center
         containerView?.addSubview(label)
         // 手机号
-        phoneTextField = PTextField(frame: CGRect(x: 32, y: label.bottom + 20, width: containerView!.width - 64, height: 44))
-        phoneTextField?.backgroundColor = UIColor.colorWithHexAndAlpha(hex: "2acae7", alpha: 1)
-        phoneTextField?.textColor = UIColor.white
-        phoneTextField?.font = PFont(size: 14)
-        phoneTextField?.placeholder = "手机号"
-        phoneTextField?.keyboardType = .numberPad
-        containerView?.addSubview(phoneTextField!)
+        mobileTextField = PTextField(frame: CGRect(x: 32, y: label.bottom + 20, width: containerView!.width - 64, height: 44))
+        mobileTextField?.backgroundColor = UIColor.colorWithHexAndAlpha(hex: "2acae7", alpha: 1)
+        mobileTextField?.textColor = UIColor.white
+        mobileTextField?.font = PFont(size: 14)
+        mobileTextField?.placeholder = "手机号"
+        mobileTextField?.keyboardType = .numberPad
+        containerView?.addSubview(mobileTextField!)
         
         // 验证码
-        codeTextField = PTextField(frame: CGRect(x: phoneTextField!.left, y: phoneTextField!.bottom + 10, width: phoneTextField!.width - 50, height: phoneTextField!.height))
+        codeTextField = PTextField(frame: CGRect(x: mobileTextField!.left, y: mobileTextField!.bottom + 10, width: mobileTextField!.width - 50, height: mobileTextField!.height))
         codeTextField?.backgroundColor = UIColor.colorWithHexAndAlpha(hex: "2acae7", alpha: 1)
         codeTextField?.textColor = UIColor.white
         codeTextField?.font = PFont(size: 14)
@@ -100,12 +107,85 @@ class PLoginViewController: PBaseViewController {
         containerView?.center = CGPoint(x: self.view.width/2.0, y: self.view.height/2.0 - 150)
     }
     
+    func invalidateTimer() {
+        if timer != nil && (timer?.isValid)! {
+            timer = nil
+            timer?.invalidate()
+        }
+    }
+    
     @objc func getCode() {
         
+        if !self.validateMobile(mobile: mobileTextField?.text) {
+            Hud.show(content: "请输入正确的手机号")
+            return
+        }
+        
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(countDown), userInfo: nil, repeats: true)
+        codeButton?.setTitle(String(countDownNumber), for: .normal)
+        codeButton?.isUserInteractionEnabled = false
+        
+        PHttpManager.requestAsynchronous(url: "/mobile/sendCode", method: .get, parameters:["mobile": mobileTextField!.text!]) { dic, error in
+            let code = dic["code"]?.int64Value
+            if code != 200 {
+                Hud.show(content: dic["message"] as! String)
+            } else {
+                Hud.show(content: "验证码已发送")
+            }
+        }
+    }
+    
+    @objc func countDown() {
+//        print("\(countDownNumber)")
+        countDownNumber = countDownNumber - 1
+        if countDownNumber <= 0 {
+            codeButton?.setTitle("验证码", for: .normal)
+            countDownNumber = 59
+            timer?.invalidate()
+            timer = nil
+            codeButton?.isUserInteractionEnabled = true
+        } else {
+            codeButton?.setTitle(String(countDownNumber), for: .normal)
+        }
+    }
+    
+    func validateMobile(mobile: String?) -> Bool {
+        guard let regEx = try? NSRegularExpression(pattern: "^1[3-9][0-9]{9}$", options: .caseInsensitive) else {
+            return false
+        }
+        let count = regEx.numberOfMatches(in: mobile!, options: .reportProgress, range: NSMakeRange(0, mobile!.count))
+        return count > 0;
+    }
+    
+    func validateCode(code: String?) -> Bool {
+        guard let regEx = try? NSRegularExpression(pattern: "^[0-9]{6}$", options: .caseInsensitive) else {
+            return false
+        }
+        let count = regEx.numberOfMatches(in: code!, options: .reportProgress, range: NSMakeRange(0, code!.count))
+        return count > 0;
     }
     
     @objc func login() {
+        if !self.validateMobile(mobile: mobileTextField?.text) {
+            Hud.show(content: "请输入正确的手机号")
+            return
+        }
         
+        if !self.validateCode(code: codeTextField?.text) {
+            Hud.show(content: "请输入正确的验证码")
+            return
+        }
+   
+        PHttpManager.requestAsynchronous(url: "/account/login", method: .post, parameters:["mobile":mobileTextField!.text!, "code": codeTextField!.text!]) { dic , error in
+            let code = dic["code"]?.int64Value
+            if code != 200 {
+                Hud.show(content: dic["message"] as! String)
+            } else {
+                self.invalidateTimer()
+                PUserSession.instance.updateSession(dic: dic["data"] as! Dictionary<String, Any>)
+                NotificationCenter.default.post(name: PUserSessionChanged, object: nil, userInfo: nil)
+            }
+        }
     }
     
     @objc func lookupProtocol() {

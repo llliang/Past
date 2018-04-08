@@ -8,13 +8,30 @@
 
 import UIKit
 
+let PUserSessionChanged: NSNotification.Name = NSNotification.Name(rawValue: "past.userSession.changed")
+let PUserSessionCacheKey = "past.userSession.CacheKey"
+
 class PUserSession: NSObject {
-   class func shareInstance() -> PUserSession {
-        let session = PUserSession()
-        return session
+    
+    var session: PSessionEntity?
+    
+    override init() {
+        session = PCacheManager.instance.cache(forKey: PUserSessionCacheKey)
     }
     
+    static let instance = PUserSession()
+    
     func validSession() -> Bool {
+        if let _ = session {
+            return !(session?.token.isEmpty)!
+        }
         return false
     }
+    
+    func updateSession(dic: Dictionary<String, Any>) {
+        session = PSessionEntity.toEntity(data: dic)
+        _ = PCacheManager.instance.setCache(cache: session!, forKey: PUserSessionCacheKey)
+    }
+    
+    
 }

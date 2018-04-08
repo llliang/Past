@@ -8,7 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		3208D6DADA836131D54D4B49 /* Pods_Past.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89A9C4B270563D442B064B84 /* Pods_Past.framework */; };
+		370B6FE2207494B4007873A9 /* PLoadMoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370B6FE1207494B4007873A9 /* PLoadMoreView.swift */; };
+		370B6FE62074B7AC007873A9 /* PMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370B6FE52074B7AC007873A9 /* PMainViewController.swift */; };
+		370B6FE82074B837007873A9 /* PProfileEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370B6FE72074B837007873A9 /* PProfileEditViewController.swift */; };
+		370B6FEA2074B847007873A9 /* PProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370B6FE92074B847007873A9 /* PProfileViewController.swift */; };
+		3717C92020720ACA004551DC /* PRefreshTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3717C91F20720ACA004551DC /* PRefreshTableViewController.swift */; };
+		3717C92220720DB8004551DC /* PDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3717C92120720DB8004551DC /* PDataModel.swift */; };
+		3717C924207270A0004551DC /* PUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3717C923207270A0004551DC /* PUser.swift */; };
+		3717C9262072718B004551DC /* PSquareDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3717C9252072718B004551DC /* PSquareDataModel.swift */; };
 		374241F2206407670074FDE2 /* NSStringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374241F1206407670074FDE2 /* NSStringExtension.swift */; };
+		37725FE52071D10200A2FADC /* PNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37725FE42071D10200A2FADC /* PNavigationController.swift */; };
 		37727AB320639E840097C599 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37727AB220639E840097C599 /* AppDelegate.swift */; };
 		37727ABA20639E840097C599 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37727AB920639E840097C599 /* Assets.xcassets */; };
 		37727ACD2063A04A0097C599 /* PConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37727ACC2063A04A0097C599 /* PConstants.swift */; };
@@ -18,10 +27,30 @@
 		37727ADA2063A6050097C599 /* UIViewExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37727AD92063A6050097C599 /* UIViewExtention.swift */; };
 		37727ADC2063A9730097C599 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37727ADB2063A9730097C599 /* UIColorExtension.swift */; };
 		37727ADE2063B2C20097C599 /* PTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37727ADD2063B2C20097C599 /* PTextField.swift */; };
+		379297632068BFA80072FBE7 /* Hud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379297622068BFA80072FBE7 /* Hud.swift */; };
+		379F3DB8206D31A400668839 /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379F3DB7206D31A400668839 /* Entity.swift */; };
+		379F3DBB206D35BB00668839 /* PSessionEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379F3DBA206D35BB00668839 /* PSessionEntity.swift */; };
+		37A56827206B31D3009F5B63 /* PCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A56826206B31D3009F5B63 /* PCacheManager.swift */; };
+		37B261CA2067F43600D0F943 /* PHttpManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B261C92067F43600D0F943 /* PHttpManager.swift */; };
+		37B261CC2067F47A00D0F943 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B261CB2067F47A00D0F943 /* Util.swift */; };
+		37B261CE2067F5A900D0F943 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B261CD2067F5A900D0F943 /* StringExtension.swift */; };
+		37FE8A27207734BC00748284 /* PPlaceholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FE8A26207734BC00748284 /* PPlaceholderTextView.swift */; };
+		37FE8A2C2077A13500748284 /* PTextFieldController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FE8A2B2077A13500748284 /* PTextFieldController.swift */; };
+		37FE8A2E2077A14600748284 /* PTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FE8A2D2077A14600748284 /* PTextViewController.swift */; };
+		37FE8A302077A90A00748284 /* PTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FE8A2F2077A90A00748284 /* PTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		370B6FE1207494B4007873A9 /* PLoadMoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PLoadMoreView.swift; sourceTree = "<group>"; };
+		370B6FE52074B7AC007873A9 /* PMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMainViewController.swift; sourceTree = "<group>"; };
+		370B6FE72074B837007873A9 /* PProfileEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PProfileEditViewController.swift; sourceTree = "<group>"; };
+		370B6FE92074B847007873A9 /* PProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PProfileViewController.swift; sourceTree = "<group>"; };
+		3717C91F20720ACA004551DC /* PRefreshTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PRefreshTableViewController.swift; sourceTree = "<group>"; };
+		3717C92120720DB8004551DC /* PDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDataModel.swift; sourceTree = "<group>"; };
+		3717C923207270A0004551DC /* PUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PUser.swift; sourceTree = "<group>"; };
+		3717C9252072718B004551DC /* PSquareDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSquareDataModel.swift; sourceTree = "<group>"; };
 		374241F1206407670074FDE2 /* NSStringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSStringExtension.swift; sourceTree = "<group>"; };
+		37725FE42071D10200A2FADC /* PNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNavigationController.swift; sourceTree = "<group>"; };
 		37727AAF20639E840097C599 /* Past.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Past.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		37727AB220639E840097C599 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		37727AB920639E840097C599 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -33,6 +62,17 @@
 		37727AD92063A6050097C599 /* UIViewExtention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtention.swift; sourceTree = "<group>"; };
 		37727ADB2063A9730097C599 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		37727ADD2063B2C20097C599 /* PTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PTextField.swift; sourceTree = "<group>"; };
+		379297622068BFA80072FBE7 /* Hud.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hud.swift; sourceTree = "<group>"; };
+		379F3DB7206D31A400668839 /* Entity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
+		379F3DBA206D35BB00668839 /* PSessionEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSessionEntity.swift; sourceTree = "<group>"; };
+		37A56826206B31D3009F5B63 /* PCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCacheManager.swift; sourceTree = "<group>"; };
+		37B261C92067F43600D0F943 /* PHttpManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PHttpManager.swift; sourceTree = "<group>"; };
+		37B261CB2067F47A00D0F943 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
+		37B261CD2067F5A900D0F943 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		37FE8A26207734BC00748284 /* PPlaceholderTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PPlaceholderTextView.swift; sourceTree = "<group>"; };
+		37FE8A2B2077A13500748284 /* PTextFieldController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PTextFieldController.swift; sourceTree = "<group>"; };
+		37FE8A2D2077A14600748284 /* PTextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PTextViewController.swift; sourceTree = "<group>"; };
+		37FE8A2F2077A90A00748284 /* PTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PTableViewCell.swift; sourceTree = "<group>"; };
 		44D828AB9ADD7EECA1E3B6F0 /* Pods-Past.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Past.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Past/Pods-Past.debug.xcconfig"; sourceTree = "<group>"; };
 		89A9C4B270563D442B064B84 /* Pods_Past.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Past.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF04B4FF1E790812F9880B32 /* Pods-Past.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Past.release.xcconfig"; path = "Pods/Target Support Files/Pods-Past/Pods-Past.release.xcconfig"; sourceTree = "<group>"; };
@@ -50,6 +90,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		370B6FE32074B7AC007873A9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		370B6FE42074B7AC007873A9 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				370B6FE52074B7AC007873A9 /* PMainViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		374F778B206CD4E0000356EE /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				379F3DB7206D31A400668839 /* Entity.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
 		37727AA620639E840097C599 = {
 			isa = PBXGroup;
 			children = (
@@ -104,8 +167,11 @@
 			children = (
 				37727ACC2063A04A0097C599 /* PConstants.swift */,
 				37727AD92063A6050097C599 /* UIViewExtention.swift */,
+				37B261CD2067F5A900D0F943 /* StringExtension.swift */,
 				37727ADB2063A9730097C599 /* UIColorExtension.swift */,
 				374241F1206407670074FDE2 /* NSStringExtension.swift */,
+				37B261CB2067F47A00D0F943 /* Util.swift */,
+				379297622068BFA80072FBE7 /* Hud.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -113,6 +179,8 @@
 		37727AC720639FA30097C599 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				379F3DBC206DC75700668839 /* Models */,
+				374F778B206CD4E0000356EE /* Entities */,
 				37727AC820639FA30097C599 /* Managers */,
 				37727AC920639FA30097C599 /* Controllers */,
 				37727ACA20639FA30097C599 /* Views */,
@@ -124,6 +192,8 @@
 			isa = PBXGroup;
 			children = (
 				37727AD72063A4980097C599 /* PUserSession.swift */,
+				37B261C92067F43600D0F943 /* PHttpManager.swift */,
+				37A56826206B31D3009F5B63 /* PCacheManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -132,6 +202,10 @@
 			isa = PBXGroup;
 			children = (
 				37727ACE2063A0CF0097C599 /* PBaseViewController.swift */,
+				37725FE42071D10200A2FADC /* PNavigationController.swift */,
+				3717C91F20720ACA004551DC /* PRefreshTableViewController.swift */,
+				37FE8A2B2077A13500748284 /* PTextFieldController.swift */,
+				37FE8A2D2077A14600748284 /* PTextViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -140,6 +214,9 @@
 			isa = PBXGroup;
 			children = (
 				37727ADD2063B2C20097C599 /* PTextField.swift */,
+				370B6FE1207494B4007873A9 /* PLoadMoreView.swift */,
+				37FE8A26207734BC00748284 /* PPlaceholderTextView.swift */,
+				37FE8A2F2077A90A00748284 /* PTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -154,7 +231,9 @@
 		37727AD02063A0F10097C599 /* Account */ = {
 			isa = PBXGroup;
 			children = (
+				379F3DB9206D358B00668839 /* Entities */,
 				37727AD42063A4660097C599 /* Controllers */,
+				37FE8A2820779C3D00748284 /* Views */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -162,6 +241,8 @@
 		37727AD12063A0F10097C599 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				370B6FE42074B7AC007873A9 /* Controllers */,
+				370B6FE32074B7AC007873A9 /* Views */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -170,8 +251,35 @@
 			isa = PBXGroup;
 			children = (
 				37727AD52063A4660097C599 /* PLoginViewController.swift */,
+				370B6FE92074B847007873A9 /* PProfileViewController.swift */,
+				370B6FE72074B837007873A9 /* PProfileEditViewController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		379F3DB9206D358B00668839 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				379F3DBA206D35BB00668839 /* PSessionEntity.swift */,
+				3717C923207270A0004551DC /* PUser.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		379F3DBC206DC75700668839 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3717C92120720DB8004551DC /* PDataModel.swift */,
+				3717C9252072718B004551DC /* PSquareDataModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		37FE8A2820779C3D00748284 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		4829B0E1BFA4CBA182A74D44 /* Pods */ = {
@@ -222,7 +330,7 @@
 			attributes = {
 				CLASSPREFIX = P;
 				LastSwiftUpdateCheck = 0920;
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Jiang Liang";
 				TargetAttributes = {
 					37727AAE20639E840097C599 = {
@@ -323,15 +431,35 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37A56827206B31D3009F5B63 /* PCacheManager.swift in Sources */,
+				37B261CC2067F47A00D0F943 /* Util.swift in Sources */,
 				37727AD82063A4980097C599 /* PUserSession.swift in Sources */,
 				37727ADC2063A9730097C599 /* UIColorExtension.swift in Sources */,
+				3717C924207270A0004551DC /* PUser.swift in Sources */,
+				379F3DBB206D35BB00668839 /* PSessionEntity.swift in Sources */,
+				3717C9262072718B004551DC /* PSquareDataModel.swift in Sources */,
+				3717C92220720DB8004551DC /* PDataModel.swift in Sources */,
+				37725FE52071D10200A2FADC /* PNavigationController.swift in Sources */,
 				37727ACD2063A04A0097C599 /* PConstants.swift in Sources */,
+				379F3DB8206D31A400668839 /* Entity.swift in Sources */,
+				37FE8A2C2077A13500748284 /* PTextFieldController.swift in Sources */,
+				370B6FE62074B7AC007873A9 /* PMainViewController.swift in Sources */,
 				37727AD62063A4660097C599 /* PLoginViewController.swift in Sources */,
+				379297632068BFA80072FBE7 /* Hud.swift in Sources */,
+				37FE8A302077A90A00748284 /* PTableViewCell.swift in Sources */,
+				3717C92020720ACA004551DC /* PRefreshTableViewController.swift in Sources */,
+				37FE8A2E2077A14600748284 /* PTextViewController.swift in Sources */,
 				37727ADE2063B2C20097C599 /* PTextField.swift in Sources */,
+				37FE8A27207734BC00748284 /* PPlaceholderTextView.swift in Sources */,
 				37727ADA2063A6050097C599 /* UIViewExtention.swift in Sources */,
+				37B261CA2067F43600D0F943 /* PHttpManager.swift in Sources */,
+				370B6FE82074B837007873A9 /* PProfileEditViewController.swift in Sources */,
+				37B261CE2067F5A900D0F943 /* StringExtension.swift in Sources */,
+				370B6FE2207494B4007873A9 /* PLoadMoreView.swift in Sources */,
 				37727AB320639E840097C599 /* AppDelegate.swift in Sources */,
 				37727ACF2063A0CF0097C599 /* PBaseViewController.swift in Sources */,
 				374241F2206407670074FDE2 /* NSStringExtension.swift in Sources */,
+				370B6FEA2074B847007873A9 /* PProfileViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -352,6 +480,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -359,6 +488,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -409,6 +539,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -416,6 +547,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;

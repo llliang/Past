@@ -12,7 +12,7 @@ class PBaseViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.view.backgroundColor = UIColor.colorWithHex(hex: "f3f3f3")
     }
 
 }
