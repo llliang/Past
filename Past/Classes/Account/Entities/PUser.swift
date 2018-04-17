@@ -9,7 +9,8 @@
 import UIKit
 
 struct PUser: Entity {
-    var userId: Int64?
+    
+    var userId: Int
     var nickname: String?
     var avatar: String?
     var gender: Int?

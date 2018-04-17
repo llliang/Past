@@ -12,6 +12,9 @@ class PNavigationController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationBar.isTranslucent = false
+        self.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.darkGray, NSAttributedStringKey.font: PFont(size: 18)!]
         
     }
+    
 }

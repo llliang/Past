@@ -125,10 +125,10 @@ class PLoginViewController: PBaseViewController {
         codeButton?.setTitle(String(countDownNumber), for: .normal)
         codeButton?.isUserInteractionEnabled = false
         
-        PHttpManager.requestAsynchronous(url: "/mobile/sendCode", method: .get, parameters:["mobile": mobileTextField!.text!]) { dic, error in
-            let code = dic["code"]?.int64Value
-            if code != 200 {
-                Hud.show(content: dic["message"] as! String)
+        PHttpManager.requestAsynchronous(url: "/mobile/sendCode", method: .get, parameters:["mobile": mobileTextField!.text!]) { result in
+            
+            if result.code != 200 {
+                Hud.show(content: result.message)
             } else {
                 Hud.show(content: "验证码已发送")
             }
@@ -176,14 +176,24 @@ class PLoginViewController: PBaseViewController {
             return
         }
    
-        PHttpManager.requestAsynchronous(url: "/account/login", method: .post, parameters:["mobile":mobileTextField!.text!, "code": codeTextField!.text!]) { dic , error in
-            let code = dic["code"]?.int64Value
-            if code != 200 {
-                Hud.show(content: dic["message"] as! String)
+        PHttpManager.requestAsynchronous(url: "/account/login", method: .post, parameters:["mobile":mobileTextField!.text!, "code": codeTextField!.text!]) { result in
+            if result.error != nil {
+                Hud.show(content: (result.error?.description)!)
+                return
+            }
+            if result.code != 200 {
+                Hud.show(content: result.message)
             } else {
                 self.invalidateTimer()
-                PUserSession.instance.updateSession(dic: dic["data"] as! Dictionary<String, Any>)
-                NotificationCenter.default.post(name: PUserSessionChanged, object: nil, userInfo: nil)
+                PUserSession.instance.updateSession(dic: result.data! as! Dictionary<String, Any>)
+                if (PUserSession.instance.session?.register)! {
+                    let profileController = PProfileEditViewController()
+                    profileController.title = "完善个人信息"
+                    let navController = PNavigationController(rootViewController: profileController)
+                    self.present(navController, animated: true, completion: nil)
+                } else {
+                    NotificationCenter.default.post(name: PUserSessionChanged, object: nil, userInfo: nil)
+                }
             }
         }
     }

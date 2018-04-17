@@ -41,7 +41,7 @@ class PTextFieldController: PBaseViewController, UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         didBlock!(textField.text!)
-        self.dismiss(animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
         return true
     }
 }

@@ -9,7 +9,7 @@
 import UIKit
 
 class PRefreshTableViewController<E: Entity, Type>: PBaseViewController, UITableViewDelegate, UITableViewDataSource {
-    
+ 
     var tableView: UITableView?
     
     var loadMoreView: PLoadMoreView?
@@ -23,21 +23,18 @@ class PRefreshTableViewController<E: Entity, Type>: PBaseViewController, UITable
     }()
     
     override func viewDidLoad() {
-        self.initialize()
+        self.layoutSubviews()
         self.refresh()
     }
     
-    open func initialize() {
+    open func layoutSubviews() {
         tableView = UITableView(frame: self.view.bounds, style: .plain)
-        tableView?.autoresizingMask = [UIViewAutoresizing.flexibleHeight, UIViewAutoresizing.flexibleTopMargin, UIViewAutoresizing.flexibleBottomMargin]
+
+        tableView?.autoresizingMask = UIViewAutoresizing.flexibleHeight
         tableView?.delegate = self
+        tableView?.dataSource = self
+        tableView?.tableFooterView = UIView()
         self.view.addSubview(tableView!)
-        if #available(iOS 11.0, *) {
-            tableView?.contentInsetAdjustmentBehavior = .never
-        } else {
-            // Fallback on earlier versions
-            self.automaticallyAdjustsScrollViewInsets = false
-        }
         
         tableView?.refreshControl = refreshControl
         
@@ -52,13 +49,17 @@ class PRefreshTableViewController<E: Entity, Type>: PBaseViewController, UITable
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return dataModel.itemCount
     }
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
     }
     
+//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        
+//    }
+//    
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         
         let offset_Y = scrollView.contentOffset.y
@@ -105,8 +106,14 @@ class PRefreshTableViewController<E: Entity, Type>: PBaseViewController, UITable
         dataModel.load(start: {
             
         }, finished: { (data, error) in
+            if (error != nil) {
+                Hud.show(content: error!.description)
+            } else {                
+                self.loadMoreView?.isHidden = !self.dataModel.canLoadMore
+                self.tableView?.reloadData()
+            }
             self.refreshControl.endRefreshing()
-            self.loadMoreView?.isHidden = !self.dataModel.canLoadMore
+
         })
     }
 }

@@ -51,6 +51,10 @@ class PPlaceholderTextView: UITextView {
         placeholderTextView!.backgroundColor = UIColor.clear;
         self.addSubview(placeholderTextView!)
         
+        if #available(iOS 11.0, *) {
+            placeholderTextView?.contentInsetAdjustmentBehavior = .never
+            self.contentInsetAdjustmentBehavior = .never
+        }
         NotificationCenter.default.addObserver(self, selector: #selector(textDidChangeForPlaceholder), name: NSNotification.Name.UITextViewTextDidChange, object: nil)
     }
     

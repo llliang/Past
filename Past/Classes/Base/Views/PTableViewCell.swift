@@ -27,6 +27,7 @@ class PTableViewCell : UITableViewCell {
     
     init(style: PTableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: .default, reuseIdentifier: reuseIdentifier)
+        self.selectionStyle = .none
         
         if style.contains(.default) {
             return
@@ -66,7 +67,7 @@ class PTableViewCell : UITableViewCell {
             
             rightLabel = UILabel(frame: CGRect(x: left, y: 0, width: 0, height: self.height))
             rightLabel?.font = PFont(size: 16)
-            rightLabel?.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+            rightLabel?.autoresizingMask = .flexibleHeight
             rightLabel?.textColor = UIColor.gray
             rightLabel?.textAlignment = .right
 

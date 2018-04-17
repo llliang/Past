@@ -10,5 +10,5 @@ import Foundation
 import UIKit
 
 func PFont(size: CGFloat) -> UIFont? {
-    return UIFont(name: "", size: size)
+    return  UIFont(name: "STXingkaiSC-Light", size: size)
 }
