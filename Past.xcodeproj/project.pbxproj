@@ -10,8 +10,7 @@
 		3208D6DADA836131D54D4B49 /* Pods_Past.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89A9C4B270563D442B064B84 /* Pods_Past.framework */; };
 		370B6FE2207494B4007873A9 /* PLoadMoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370B6FE1207494B4007873A9 /* PLoadMoreView.swift */; };
 		370B6FE62074B7AC007873A9 /* PSquareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370B6FE52074B7AC007873A9 /* PSquareViewController.swift */; };
-		370B6FE82074B837007873A9 /* PProfileEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370B6FE72074B837007873A9 /* PProfileEditViewController.swift */; };
-		370B6FEA2074B847007873A9 /* PProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370B6FE92074B847007873A9 /* PProfileViewController.swift */; };
+		370B6FE82074B837007873A9 /* PProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370B6FE72074B837007873A9 /* PProfileViewController.swift */; };
 		370CAC2F207F38B90048F416 /* PMail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370CAC2E207F38B90048F416 /* PMail.swift */; };
 		370CAC31208037ED0048F416 /* PMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370CAC30208037ED0048F416 /* PMainViewController.swift */; };
 		370CAC36208039F30048F416 /* PFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370CAC35208039F30048F416 /* PFriendsViewController.swift */; };
@@ -28,7 +27,6 @@
 		3725F1A5207CA1FF006DF51C /* mail_envelope_passed@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3725F1A3207CA1FF006DF51C /* mail_envelope_passed@3x.png */; };
 		3725F1A7207CD132006DF51C /* PStampsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3725F1A6207CD132006DF51C /* PStampsView.swift */; };
 		3735B4BA2079BBB8007EDDF3 /* PSquareTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3735B4B92079BBB8007EDDF3 /* PSquareTableViewCell.swift */; };
-		3735B4BF2079FB0F007EDDF3 /* xingkai.ttc in Resources */ = {isa = PBXBuildFile; fileRef = 3735B4BE2079FB0E007EDDF3 /* xingkai.ttc */; };
 		3735B4C1207A0813007EDDF3 /* UIBarButtonItemExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3735B4C0207A0813007EDDF3 /* UIBarButtonItemExtension.swift */; };
 		374241F2206407670074FDE2 /* NSStringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374241F1206407670074FDE2 /* NSStringExtension.swift */; };
 		37725FE52071D10200A2FADC /* PNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37725FE42071D10200A2FADC /* PNavigationController.swift */; };
@@ -47,6 +45,8 @@
 		37B261CA2067F43600D0F943 /* PHttpManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B261C92067F43600D0F943 /* PHttpManager.swift */; };
 		37B261CC2067F47A00D0F943 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B261CB2067F47A00D0F943 /* Util.swift */; };
 		37B261CE2067F5A900D0F943 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B261CD2067F5A900D0F943 /* StringExtension.swift */; };
+		37BD16B12087216500952751 /* xingkai.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 37BD16B02087216500952751 /* xingkai.ttf */; };
+		37DF15D42088907000C1AC88 /* PMailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DF15D32088907000C1AC88 /* PMailTableViewCell.swift */; };
 		37E082E0207B488200BC51EC /* mail_envelope_top@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37E082DA207B488200BC51EC /* mail_envelope_top@2x.png */; };
 		37E082E1207B488200BC51EC /* mail_envelope_stampZone@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37E082DB207B488200BC51EC /* mail_envelope_stampZone@3x.png */; };
 		37E082E2207B488200BC51EC /* mail_envelope_bottom@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37E082DC207B488200BC51EC /* mail_envelope_bottom@2x.png */; };
@@ -62,8 +62,7 @@
 /* Begin PBXFileReference section */
 		370B6FE1207494B4007873A9 /* PLoadMoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PLoadMoreView.swift; sourceTree = "<group>"; };
 		370B6FE52074B7AC007873A9 /* PSquareViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PSquareViewController.swift; sourceTree = "<group>"; };
-		370B6FE72074B837007873A9 /* PProfileEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PProfileEditViewController.swift; sourceTree = "<group>"; };
-		370B6FE92074B847007873A9 /* PProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PProfileViewController.swift; sourceTree = "<group>"; };
+		370B6FE72074B837007873A9 /* PProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PProfileViewController.swift; sourceTree = "<group>"; };
 		370CAC2E207F38B90048F416 /* PMail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PMail.swift; sourceTree = "<group>"; };
 		370CAC30208037ED0048F416 /* PMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PMainViewController.swift; sourceTree = "<group>"; };
 		370CAC35208039F30048F416 /* PFriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PFriendsViewController.swift; sourceTree = "<group>"; };
@@ -80,7 +79,6 @@
 		3725F1A3207CA1FF006DF51C /* mail_envelope_passed@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mail_envelope_passed@3x.png"; sourceTree = "<group>"; };
 		3725F1A6207CD132006DF51C /* PStampsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PStampsView.swift; sourceTree = "<group>"; };
 		3735B4B92079BBB8007EDDF3 /* PSquareTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSquareTableViewCell.swift; sourceTree = "<group>"; };
-		3735B4BE2079FB0E007EDDF3 /* xingkai.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = xingkai.ttc; sourceTree = "<group>"; };
 		3735B4C0207A0813007EDDF3 /* UIBarButtonItemExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBarButtonItemExtension.swift; sourceTree = "<group>"; };
 		374241F1206407670074FDE2 /* NSStringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSStringExtension.swift; sourceTree = "<group>"; };
 		37725FE42071D10200A2FADC /* PNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNavigationController.swift; sourceTree = "<group>"; };
@@ -101,6 +99,8 @@
 		37B261C92067F43600D0F943 /* PHttpManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PHttpManager.swift; sourceTree = "<group>"; };
 		37B261CB2067F47A00D0F943 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		37B261CD2067F5A900D0F943 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		37BD16B02087216500952751 /* xingkai.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = xingkai.ttf; sourceTree = "<group>"; };
+		37DF15D32088907000C1AC88 /* PMailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PMailTableViewCell.swift; sourceTree = "<group>"; };
 		37E082DA207B488200BC51EC /* mail_envelope_top@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mail_envelope_top@2x.png"; sourceTree = "<group>"; };
 		37E082DB207B488200BC51EC /* mail_envelope_stampZone@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mail_envelope_stampZone@3x.png"; sourceTree = "<group>"; };
 		37E082DC207B488200BC51EC /* mail_envelope_bottom@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mail_envelope_bottom@2x.png"; sourceTree = "<group>"; };
@@ -196,6 +196,7 @@
 			isa = PBXGroup;
 			children = (
 				3725F1A6207CD132006DF51C /* PStampsView.swift */,
+				37DF15D32088907000C1AC88 /* PMailTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -353,8 +354,8 @@
 		37727ACB20639FA30097C599 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				37BD16B02087216500952751 /* xingkai.ttf */,
 				37E082D9207B488200BC51EC /* Mail */,
-				3735B4BE2079FB0E007EDDF3 /* xingkai.ttc */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -382,8 +383,7 @@
 			isa = PBXGroup;
 			children = (
 				37727AD52063A4660097C599 /* PLoginViewController.swift */,
-				370B6FE92074B847007873A9 /* PProfileViewController.swift */,
-				370B6FE72074B837007873A9 /* PProfileEditViewController.swift */,
+				370B6FE72074B837007873A9 /* PProfileViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -510,11 +510,11 @@
 				3725F1A4207CA1FF006DF51C /* mail_envelope_passed@2x.png in Resources */,
 				37E082E1207B488200BC51EC /* mail_envelope_stampZone@3x.png in Resources */,
 				37E082E2207B488200BC51EC /* mail_envelope_bottom@2x.png in Resources */,
-				3735B4BF2079FB0F007EDDF3 /* xingkai.ttc in Resources */,
 				37E082E5207B488200BC51EC /* mail_envelope_stampZone@2x.png in Resources */,
 				37E082E4207B488200BC51EC /* mail_envelope_top@3x.png in Resources */,
 				3725F1A5207CA1FF006DF51C /* mail_envelope_passed@3x.png in Resources */,
 				37727ABA20639E840097C599 /* Assets.xcassets in Resources */,
+				37BD16B12087216500952751 /* xingkai.ttf in Resources */,
 				37E082E0207B488200BC51EC /* mail_envelope_top@2x.png in Resources */,
 				37E082E3207B488200BC51EC /* mail_envelope_bottom@3x.png in Resources */,
 			);
@@ -615,7 +615,7 @@
 				37FE8A27207734BC00748284 /* PPlaceholderTextView.swift in Sources */,
 				37727ADA2063A6050097C599 /* UIViewExtention.swift in Sources */,
 				37B261CA2067F43600D0F943 /* PHttpManager.swift in Sources */,
-				370B6FE82074B837007873A9 /* PProfileEditViewController.swift in Sources */,
+				370B6FE82074B837007873A9 /* PProfileViewController.swift in Sources */,
 				37B261CE2067F5A900D0F943 /* StringExtension.swift in Sources */,
 				370B6FE2207494B4007873A9 /* PLoadMoreView.swift in Sources */,
 				37727AB320639E840097C599 /* AppDelegate.swift in Sources */,
@@ -623,7 +623,7 @@
 				3735B4BA2079BBB8007EDDF3 /* PSquareTableViewCell.swift in Sources */,
 				370CAC36208039F30048F416 /* PFriendsViewController.swift in Sources */,
 				374241F2206407670074FDE2 /* NSStringExtension.swift in Sources */,
-				370B6FEA2074B847007873A9 /* PProfileViewController.swift in Sources */,
+				37DF15D42088907000C1AC88 /* PMailTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

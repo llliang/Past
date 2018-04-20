@@ -24,7 +24,7 @@ class PMainViewController: UITabBarController {
         
         self.viewControllers = controllers
         
-        let titles = ["缘", "份", "我"]
+        let titles = ["缘", "份", "相"]
         for i in 0..<3 {
             let item = UITabBarItem()
             item.title = titles[i]

@@ -24,8 +24,12 @@ class PLoginViewController: PBaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.colorWithHex(hex: "f3f3f3")
         self.layoutSubviews()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.isNavigationBarHidden = true
     }
     
     func layoutSubviews() {
@@ -33,7 +37,7 @@ class PLoginViewController: PBaseViewController {
         self.view.addSubview(containerView!)
         
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: containerView!.width, height: 60))
-        label.font = PFont(size: 14)
+        label.font = PFont(size: 18)
         label.numberOfLines = 0
         let text = """
         昔我往矣 杨柳依依
@@ -49,7 +53,7 @@ class PLoginViewController: PBaseViewController {
         containerView?.addSubview(label)
         // 手机号
         mobileTextField = PTextField(frame: CGRect(x: 32, y: label.bottom + 20, width: containerView!.width - 64, height: 44))
-        mobileTextField?.backgroundColor = UIColor.colorWithHexAndAlpha(hex: "2acae7", alpha: 1)
+        mobileTextField?.backgroundColor = UIColor.colorWith(hex: "2acae7", alpha: 1)
         mobileTextField?.textColor = UIColor.white
         mobileTextField?.font = PFont(size: 14)
         mobileTextField?.placeholder = "手机号"
@@ -58,7 +62,7 @@ class PLoginViewController: PBaseViewController {
         
         // 验证码
         codeTextField = PTextField(frame: CGRect(x: mobileTextField!.left, y: mobileTextField!.bottom + 10, width: mobileTextField!.width - 50, height: mobileTextField!.height))
-        codeTextField?.backgroundColor = UIColor.colorWithHexAndAlpha(hex: "2acae7", alpha: 1)
+        codeTextField?.backgroundColor = UIColor.colorWith(hex: "2acae7", alpha: 1)
         codeTextField?.textColor = UIColor.white
         codeTextField?.font = PFont(size: 14)
         codeTextField?.placeholder = "验证码"
@@ -69,12 +73,12 @@ class PLoginViewController: PBaseViewController {
         codeButton = UIButton(frame: CGRect(x: codeTextField!.right, y: codeTextField!.top + 5, width: 60, height: codeTextField!.height - 10))
         codeButton?.setTitle("验证码", for: .normal)
         codeButton?.titleLabel?.font = PFont(size: 12)
-        codeButton?.setTitleColor(UIColor.darkText, for: .normal)
+        codeButton?.setTitleColor(UIColor.titleColor, for: .normal)
         codeButton?.addTarget(self, action: #selector(getCode), for: .touchUpInside)
         containerView?.addSubview(codeButton!)
         
         let loginBtn = UIButton(frame: CGRect(x: 32, y: codeTextField!.bottom + 10, width: containerView!.width - 64, height: 44))
-        loginBtn.backgroundColor = UIColor.colorWithHex(hex: "2acae7")
+        loginBtn.backgroundColor = UIColor.colorWith(hex: "2acae7")
         loginBtn.titleLabel?.font = PFont(size: 14)
         loginBtn.setTitle("登录", for: .normal)
         loginBtn.setTitleColor(UIColor.white, for: .normal)
@@ -95,7 +99,7 @@ class PLoginViewController: PBaseViewController {
         containerView?.addSubview(protocolBtn)
         protocolBtn.titleLabel?.font = protocolLabel.font
         protocolBtn.setTitle(suffixString as String, for: .normal)
-        protocolBtn.setTitleColor(UIColor.colorWithHex(hex: "2acae7"), for: .normal)
+        protocolBtn.setTitleColor(UIColor.colorWith(hex: "2acae7"), for: .normal)
         protocolBtn.addTarget(self, action: #selector(lookupProtocol), for: .touchUpInside)
         
         protocolLabel.left = (containerView!.width - (prefixWidth + suffixWidth)) / 2.0
@@ -187,7 +191,8 @@ class PLoginViewController: PBaseViewController {
                 self.invalidateTimer()
                 PUserSession.instance.updateSession(dic: result.data! as! Dictionary<String, Any>)
                 if (PUserSession.instance.session?.register)! {
-                    let profileController = PProfileEditViewController()
+                    let profileController = PProfileViewController()
+                    profileController.user = PUserSession.instance.session?.user
                     profileController.title = "完善个人信息"
                     let navController = PNavigationController(rootViewController: profileController)
                     self.present(navController, animated: true, completion: nil)

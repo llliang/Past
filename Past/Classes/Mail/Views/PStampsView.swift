@@ -27,7 +27,7 @@ protocol PStampsViewDelegate: NSObjectProtocol {
 
 class PStampsView: UIScrollView {
 
-    var stampDelegate: PStampsViewDelegate?
+    weak var stampDelegate: PStampsViewDelegate?
     
     var stamps: [PStamp]? {
         didSet {

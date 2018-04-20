@@ -11,7 +11,7 @@ import Alamofire
 
 //let HostName = "http://localhost:3000"
 
-//let HostName = "http://192.168.3.64:3000" // 公司
+let HostName = "http://192.168.3.92:3000" // 公司
 //let HostName = "http://192.168.0.100:3000" // 家
 
 

@@ -14,7 +14,7 @@ class PRefreshTableViewController<E: Entity, Type>: PBaseViewController, UITable
     
     var loadMoreView: PLoadMoreView?
     
-    var refreshControl: UIRefreshControl = {
+    lazy var refreshControl: UIRefreshControl = {
         return UIRefreshControl()
     }()
     
@@ -39,7 +39,7 @@ class PRefreshTableViewController<E: Entity, Type>: PBaseViewController, UITable
         tableView?.refreshControl = refreshControl
         
         loadMoreView = PLoadMoreView(frame: CGRect(x: 0, y: max(tableView!.contentSize.height, tableView!.height), width: self.view.width, height: 44))
-        loadMoreView?.backgroundColor = UIColor.red
+//        loadMoreView?.backgroundColor = UIColor.red
         loadMoreView?.autoresizingMask = UIViewAutoresizing.flexibleTopMargin
         tableView?.addSubview(loadMoreView!)
     }
@@ -54,6 +54,10 @@ class PRefreshTableViewController<E: Entity, Type>: PBaseViewController, UITable
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 50
     }
     
 //    func scrollViewDidScroll(_ scrollView: UIScrollView) {

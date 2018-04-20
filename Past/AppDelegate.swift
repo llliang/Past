@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         window?.backgroundColor = UIColor.white
         
-        UITextView.appearance().tintColor = UIColor.darkGray
+//        UITextView.appearance().tintColor = UIColor.darkGray
         
         self.initializeRootViewController()
         

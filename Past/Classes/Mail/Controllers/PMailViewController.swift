@@ -8,10 +8,13 @@
 
 import UIKit
 
-class PMailViewController: PBaseViewController, PStampsViewDelegate {
+class PMailViewController: PBaseViewController, PStampsViewDelegate, UITextViewDelegate {
   
     var sender: PUser?
     var addressee: PUser?
+    
+    // 若在查看信件状态下 判断是否是收信人
+    var isSender: Bool = false
     
     var mail: PMail?
     
@@ -56,9 +59,9 @@ class PMailViewController: PBaseViewController, PStampsViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.view.backgroundColor = UIColor.white
         self.title = "给\(addressee?.nickname ?? "")的信"
-        
+      
         self.layoutMailContent()
 
         if status != .reading {
@@ -71,35 +74,57 @@ class PMailViewController: PBaseViewController, PStampsViewDelegate {
             self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "塞入信封", style: .right, target: self, action: #selector(putIntoMailer))
             
             NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-            
             // 加载用户拥有的邮票
             self.loadStamps()
         } else {
-            self.loadMailDetail()
+            isSender = (sender?.userId == PUserSession.instance.session?.user?.userId)
+            
+            var rightTitle: String
+            if isSender {
+                rightTitle = "再写一封"
+            } else {
+                rightTitle = "回复"
+            }
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: rightTitle, style: .right, target: self, action: #selector(writeMail))
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if status == .reading {
+            self.layoutMailDetail()
         }
     }
     
     func layoutMailContent() {
         
-        backView = UIView(frame: CGRect(x: 0, y: 10, width: self.view.width, height: self.view.height))
-        self.view.addSubview(backView!)
+        if status != .reading {
+            backView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.width, height: self.view.height))
+            backView?.autoresizingMask = .flexibleHeight
+            self.view.addSubview(backView!)
+        } else {
+            backView = self.view
+        }
         
-        textView = PPlaceholderTextView(frame: CGRect(x: 0, y: 0, width: backView!.width, height: 240))
+        textView = PPlaceholderTextView(frame: CGRect(x: 0, y: 0, width: backView!.width, height: 0))
         textView?.autoresizingMask = .flexibleHeight
+        textView?.delegate = self
         textView?.backgroundColor = UIColor.clear
-        textView?.contentInset = UIEdgeInsetsMake(10, 10, 0, 10)
+        textView?.contentInset = UIEdgeInsetsMake(0, 10, 0, 10)
         textView?.font = PFont(size: 16)
-        self.setTextViewContent(addressee: addressee!, content: nil)
         backView?.addSubview(textView!)
+
+        self.setTextViewContent(addressee: addressee!, content: nil)
         
-        signLabel = UILabel(frame: CGRect(x: 16, y: textView!.bottom, width: self.view.width - 32, height: 80))
-        signLabel?.numberOfLines = 0
+        signLabel = UILabel(frame: CGRect(x: 16, y: textView!.bottom, width: self.view.width - 32, height: 60))
         signLabel?.autoresizingMask = .flexibleTopMargin
+        signLabel?.numberOfLines = 0
         signLabel?.font = PFont(size: 16)
         signLabel?.textAlignment = .right
-        self.setSign(name: PUserSession.instance.session?.user?.nickname, date: Date())
         backView?.addSubview(signLabel!)
         
+        self.setSign(name: PUserSession.instance.session?.user?.nickname, date: Date())
+
         textView?.becomeFirstResponder()
     }
     
@@ -124,7 +149,7 @@ class PMailViewController: PBaseViewController, PStampsViewDelegate {
         // 收信人邮编
         for i in 0..<6 {
             let label = UILabel(frame: CGRect(x: 10 + (16 + 5)*i, y: 20, width: 16, height: 16))
-            label.layer.borderColor = UIColor.darkGray.cgColor
+            label.layer.borderColor = UIColor.titleColor.cgColor
             label.font = PFont(size: 14)
             label.layer.borderWidth = 1
             label.textAlignment = .center
@@ -180,62 +205,51 @@ class PMailViewController: PBaseViewController, PStampsViewDelegate {
         self.view.addSubview(stampsView!)
     }
     
-    func loadMailDetail() {
-//        let mailModel = PDataModel<PMail, PMail>()
-//        mailModel.url = "/mail/detail"
-//        mailModel.load(start: {
-//
-//        }) { (mail, error) in
-//            self.setTextViewContent(addressee: (mail?.addressee)! ,content: mail?.content)
-//            self.textView?.sizeToFit()
-//            if #available(iOS 11.0, *) {
-//                self.textView?.height = min(self.view.height - self.view.safeAreaInsets.bottom - self.signLabel!.height, self.textView!.height)
-//            } else {
-//                self.textView?.height = min(self.view.height - self.signLabel!.height, self.textView!.height)
-//            }
-//            self.setSign(name: mail?.sender.nickname, date: Date(timeIntervalSince1970: TimeInterval(mail!.time)))
-//            self.signLabel?.top = self.textView!.bottom
-//        }
+    func layoutMailDetail() {
         
         self.setTextViewContent(addressee: (mail?.addressee)! ,content: mail?.content)
-        self.textView?.height = self.textView!.sizeThatFits(CGSize(width: self.view.width, height: CGFloat.greatestFiniteMagnitude)).height
         
-        if #available(iOS 11.0, *) {
-//            self.textView?.height = min(self.view.height - self.view.safeAreaInsets.bottom - self.signLabel!.height, self.textView!.height)
-            
-            if self.view.height - self.view.safeAreaInsets.bottom - self.signLabel!.height <= self.textView!.height {
-                self.textView?.height = self.view.height - self.view.safeAreaInsets.bottom - self.signLabel!.height
-            } else {
-                
-                self.textView?.isScrollEnabled = false
-            }
-            
+        self.textView?.height = self.textView!.sizeThatFits(CGSize(width: self.view.width - self.textView!.contentInset.left - self.textView!.contentInset.right, height: CGFloat.greatestFiniteMagnitude)).height
+        
+        if self.backView!.height - self.signLabel!.height  <= self.textView!.height {
+            self.textView?.height = self.backView!.height - self.signLabel!.height
         } else {
-//            self.textView?.height = min(self.view.height - self.signLabel!.height, self.textView!.height)
-            if self.view.height - self.signLabel!.height <= self.textView!.height {
-                self.textView?.height = self.view.height - self.signLabel!.height
-            } else {
-                self.textView?.isScrollEnabled = false
-            }
+            self.textView?.isUserInteractionEnabled = false
         }
+        
         self.setSign(name: mail?.sender.nickname, date: Date(timeIntervalSince1970: TimeInterval(mail!.time)))
         self.signLabel?.top = self.textView!.bottom
         self.textView?.isEditable = false
     }
+
+    override func viewSafeAreaInsetsDidChange() {
+        
+        if #available(iOS 11.0, *) {
+            self.textView?.height = min(self.view.height - self.view.safeAreaInsets.bottom - self.view.safeAreaInsets.top - self.signLabel!.height, self.textView!.height)
+            if self.view.height - self.view.safeAreaInsets.bottom - self.view.safeAreaInsets.top - self.signLabel!.height <= self.textView!.height {
+                self.textView?.isUserInteractionEnabled = true
+            } else {
+                self.textView?.isUserInteractionEnabled = false
+            }
+        }
+         self.signLabel?.top = self.textView!.bottom
+    }
     
     func setTextViewContent(addressee: PUser, content: String?) {
+    
+//        if let c = content {
+//            self.textView?.text = c
+//        } else {
+//            self.textView?.text = """
+//            \(addressee.nickname ?? ""):
+//                \(content ?? "")
+//            """
+//        }
+        
         self.textView?.text = """
         \(addressee.nickname ?? ""):
             \(content ?? "")
         """
-        if let c = content {
-            self.textView?.text = c
-        } else {
-            self.textView?.text = """
-            \(addressee.nickname ?? ""):
-                \("")
-            """
-        }
     }
     
     func setSign(name: String?, date: Date) {
@@ -265,6 +279,12 @@ class PMailViewController: PBaseViewController, PStampsViewDelegate {
     @objc func putIntoMailer() {
         
         if  status == .editing {
+            
+            if self.clip(content: textView!.text).count == 0 {
+                Hud.show(content: "请书写信件内容")
+                return
+            }
+            
             textView?.resignFirstResponder()
             
             UIView.animate(withDuration: 1, delay: 0.5, usingSpringWithDamping: 1, initialSpringVelocity: 3, options: .curveLinear, animations: {
@@ -288,9 +308,10 @@ class PMailViewController: PBaseViewController, PStampsViewDelegate {
     
     @objc func keyboardWillShow(notification: Notification) {
         let rect = notification.userInfo![UIKeyboardFrameEndUserInfoKey] as! CGRect
-        backView?.height = self.view.height - 10 - rect.height
+        print("\(rect.height)")
+        backView?.height = self.view.height - rect.height
         signLabel!.top = backView!.height - signLabel!.height
-        textView!.height = signLabel!.top - 20
+        textView!.height = signLabel!.top
         
         mailer?.top = self.view.height - rect.height
     }
@@ -304,16 +325,12 @@ class PMailViewController: PBaseViewController, PStampsViewDelegate {
     }
     
     func post() {
+      
         var params = Dictionary<String, Any>()
-//        params["sender"] = String((PUserSession.instance.session?.user?.userId)!)
-//        params["addressee"] = String((addressee?.userId)!)
-//        params["stamp"] = String((stamp?.id)!)
-//        params["content"] = textView?.text
-        
         params["sender"] = PUserSession.instance.session?.user?.userId
         params["addressee"] = addressee?.userId
         params["stamp"] = stamp?.id
-        params["content"] = textView?.text
+        params["content"] = self.clip(content: textView!.text)
         
         PHttpManager.requestAsynchronous(url: "/mail/post", method: .post, parameters: params) { result in
             if result.error == nil {
@@ -327,5 +344,32 @@ class PMailViewController: PBaseViewController, PStampsViewDelegate {
                 Hud.show(content: result.error!.description)
             }
         }
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if textView.text == "\(addressee!.nickname!):" && text == "" {
+            return false
+        }
+        return true
+    }
+    
+    func clip(content: String) -> String {
+        var string = content as NSString
+        let range = string.range(of: ":")
+     
+        if range.location != NSNotFound {
+            string = string.substring(from: range.location + range.length) as NSString
+        }
+        return string.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines) as String
+    }
+    
+    @objc func writeMail() {
+        let controller = PMailViewController()
+        if isSender {
+            controller.addressee = addressee
+        } else {
+            controller.addressee = sender
+        }
+        self.navigationController?.pushViewController(controller, animated: true)
     }
 }

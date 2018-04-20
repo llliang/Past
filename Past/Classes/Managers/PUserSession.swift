@@ -34,6 +34,7 @@ class PUserSession: NSObject {
     }
     
     func cacheSession(session: PSession) {
+        self.session = session
         _ = PCacheManager.instance.setCache(cache: session, forKey: PUserSessionCacheKey)
     }
     

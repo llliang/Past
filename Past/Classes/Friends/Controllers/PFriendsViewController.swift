@@ -17,10 +17,10 @@ class PFriendsViewController: PRefreshTableViewController<PUser, [PUser]> {
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let identifier = "PSquareTableViewCell"
-        var cell = tableView.dequeueReusableCell(withIdentifier: identifier) as? PSquareTableViewCell
+        let identifier = "friends"
+        var cell = tableView.dequeueReusableCell(withIdentifier: identifier) as? PTableViewCell
         if cell == nil {
-            cell = PSquareTableViewCell(style: .default, reuseIdentifier: identifier)
+            cell = PTableViewCell(style: .default, reuseIdentifier: identifier)
         }
         let user = dataModel.item(ofIndex: indexPath.row) as? PUser
         cell?.textLabel?.font = PFont(size: 16)

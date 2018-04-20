@@ -8,28 +8,109 @@
 
 import UIKit
 
-class PMineViewController: PBaseViewController {
+class PMineViewController: PBaseViewController, UITableViewDelegate, UITableViewDataSource {
 
+    var tableView: UITableView?
+    
+    let source = ["基础资料", "账户余额", "用户协议"]
+    var exitCell: PTableViewCell?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        self.layoutSubviews()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func layoutSubviews() {
+        tableView = UITableView(frame: self.view.bounds, style: .grouped)
+        
+        tableView?.autoresizingMask = UIViewAutoresizing.flexibleHeight
+        tableView?.delegate = self
+        tableView?.dataSource = self
+        tableView?.tableFooterView = UIView()
+        self.view.addSubview(tableView!)
+        
+        exitCell = PTableViewCell(style: .default, reuseIdentifier: nil)
+        let btn = UIButton(frame: exitCell!.bounds)
+        btn.autoresizingMask = [.flexibleLeftMargin, .flexibleRightMargin, .flexibleHeight, .flexibleWidth]
+        btn.backgroundColor = UIColor.redColor
+        btn.titleLabel?.font = PFont(size: 18)
+        btn.setTitle("退出", for: .normal)
+        btn.addTarget(self, action: #selector(exit), for: .touchUpInside)
+        exitCell?.addSubview(btn)
     }
-    */
-
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 1 {
+            return 1
+        }
+        return 3
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if 1 == indexPath.section {
+            return exitCell!
+        }
+        let identifier = "mineCell"
+        var cell = tableView.dequeueReusableCell(withIdentifier: identifier) as? PTableViewCell
+        if cell == nil {
+            cell = PTableViewCell(style: [.description, .content, .arrow], reuseIdentifier: identifier)
+        }
+        cell?.leftLabel?.text = source[indexPath.row]
+        cell?.rightLabel?.textColor = UIColor.textColor
+        if 1 == indexPath.row {
+            cell?.rightLabel?.text = "\(PUserSession.instance.session?.balance ?? 0)"
+            cell?.rightLabel?.textColor = UIColor.colorWith(hex: "fa3d3d", alpha: 0.9)
+        }
+        return cell!
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 50
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if 1 == section {
+            return UIView()
+        }
+        return nil
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if 1 == section {
+            return 10
+        }
+        return 10
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if 0 == indexPath.section {
+            if 0 == indexPath.row {
+                let profileController = PProfileViewController()
+                profileController.user = PUserSession.instance.session?.user
+                self.navigationController?.pushViewController(profileController, animated: true)
+            } else if (1 == indexPath.row) {
+                
+            } else {
+                
+            }
+        }
+    }
+    
+    @objc func exit() {
+        let alertController = UIAlertController(title: "友情提醒", message: "确定要退出？", actions: ["确定"], cancel: "取消", preferredStyle: .alert) { (index) in
+            PHttpManager.requestAsynchronous(url: "/account/exit", method: .get, parameters: nil) { (result) in
+                if result.code == 200 {
+                    PUserSession.instance.exitSession()
+                } else {
+                    Hud.show(content: result.message)
+                }
+            }
+        }
+        self.present(alertController, animated: true, completion: nil)
+    }
 }

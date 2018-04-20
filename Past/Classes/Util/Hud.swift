@@ -27,7 +27,7 @@ class Hud{
     lazy var overlayView: UIControl? = {
         var overView = UIControl(frame: UIScreen.main.bounds)
         overView.isUserInteractionEnabled = true
-        overView.backgroundColor = UIColor.colorWithHexAndAlpha(hex: "ffffff", alpha: 0.4)
+        overView.backgroundColor = UIColor.colorWith(hex: "000000", alpha: 0.4)
         return overView
     }()
     

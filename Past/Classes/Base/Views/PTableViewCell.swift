@@ -49,7 +49,7 @@ class PTableViewCell : UITableViewCell {
             leftLabel = UILabel(frame: CGRect(x: left, y: 0, width: 0, height: self.height))
             leftLabel?.font = PFont(size: 16)
             leftLabel?.autoresizingMask = .flexibleHeight
-            leftLabel?.textColor = UIColor.darkGray
+            leftLabel?.textColor = UIColor.titleColor
             self.contentView.addSubview(leftLabel!)
             
             leftLabel?.addObserver(self, forKeyPath: "text", options: .new, context: nil)
@@ -68,9 +68,10 @@ class PTableViewCell : UITableViewCell {
             rightLabel = UILabel(frame: CGRect(x: left, y: 0, width: 0, height: self.height))
             rightLabel?.font = PFont(size: 16)
             rightLabel?.autoresizingMask = .flexibleHeight
-            rightLabel?.textColor = UIColor.gray
+            rightLabel?.textColor = UIColor.textColor
             rightLabel?.textAlignment = .right
-
+            rightLabel?.numberOfLines = 0
+            
             if let v = arrowView {
                 rightLabel?.width = v.left - leftLabel!.right - 20
             } else {
@@ -82,18 +83,21 @@ class PTableViewCell : UITableViewCell {
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if (object as! UILabel) == leftLabel {
-//            let text = leftLabel!.text! as NSString
+
             let width = NSString(string: leftLabel!.text!).boundingRect(with: CGSize(width: CGFloat.greatestFiniteMagnitude, height: leftLabel!.height), options: .usesLineFragmentOrigin, attributes: [NSAttributedStringKey.font: leftLabel!.font], context: nil).width
             leftLabel?.width = width
-            
             rightLabel?.left = leftLabel!.right + 10
   
             if let v = arrowView {
                 rightLabel?.width = v.left - leftLabel!.right - 20
             } else {
-                rightLabel?.width = UIScreen.main.bounds.width - 16 - leftLabel!.right - 20
+                rightLabel?.width = UIScreen.main.bounds.width - 16 - leftLabel!.right - 10
             }
         }
+    }
+    
+    class func cellHeight(with: Any?) -> CGFloat {
+        return 50
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -114,7 +118,7 @@ class PArrowView: UIView {
         let shaperLayer = CAShapeLayer()
         shaperLayer.fillColor = UIColor.clear.cgColor
         shaperLayer.lineWidth = 1
-        shaperLayer.strokeColor = UIColor(white: 0.7, alpha: 0.75).cgColor
+        shaperLayer.strokeColor = UIColor(white: 0.7, alpha: 0.6).cgColor
         shaperLayer.path = bezierPath.cgPath
         self.layer.addSublayer(shaperLayer)
     }

@@ -25,6 +25,12 @@ class PPlaceholderTextView: UITextView {
         }
     }
     
+    override var contentInset: UIEdgeInsets {
+        didSet {
+            placeholderTextView?.contentInset = contentInset
+        }
+    }
+    
     var placeholderTextView: UITextView?
     
     override var font: UIFont? {
@@ -44,7 +50,7 @@ class PPlaceholderTextView: UITextView {
         placeholderTextView = UITextView(frame: self.bounds)
         placeholderTextView!.isUserInteractionEnabled = false
         placeholderTextView!.font = self.font
-        placeholderTextView!.textColor = UIColor(white: 0.7, alpha: 0.75)
+        placeholderTextView!.textColor = UIColor.placeholderColor
         placeholderTextView!.showsVerticalScrollIndicator = false
         placeholderTextView!.showsHorizontalScrollIndicator = false
         placeholderTextView!.isScrollEnabled = false
@@ -55,6 +61,7 @@ class PPlaceholderTextView: UITextView {
             placeholderTextView?.contentInsetAdjustmentBehavior = .never
             self.contentInsetAdjustmentBehavior = .never
         }
+        
         NotificationCenter.default.addObserver(self, selector: #selector(textDidChangeForPlaceholder), name: NSNotification.Name.UITextViewTextDidChange, object: nil)
     }
     

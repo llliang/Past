@@ -18,7 +18,7 @@ class PLoadMoreView: UIView {
         stateLabel = UILabel(frame: self.bounds)
         stateLabel?.font = PFont(size: 12)
         stateLabel?.textAlignment = .center
-        stateLabel?.textColor = UIColor.gray
+        stateLabel?.textColor = UIColor.textColor
         self.addSubview(stateLabel!)
     }
     

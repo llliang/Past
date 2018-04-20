@@ -25,15 +25,20 @@ class PSquareViewController: PRefreshTableViewController<PUser, [PUser]> {
             cell = PSquareTableViewCell(style: .default, reuseIdentifier: identifier)
         }
         let user = dataModel.item(ofIndex: indexPath.row) as? PUser
-        cell?.textLabel?.font = PFont(size: 16)
-        cell?.textLabel?.text = user?.nickname
+        cell?.user = user
         return cell!
     }
     
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return PSquareTableViewCell.cellHeight(with:nil)
+    }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let controller = PMailViewController()
-        controller.addressee = dataModel.item(ofIndex: indexPath.row) as? PUser
+
+        let controller = PProfileViewController()
+        controller.user = dataModel.item(ofIndex: indexPath.row) as? PUser
         self.navigationController?.pushViewController(controller, animated: true)
     }
+    
     
 }
