@@ -33,11 +33,11 @@ class PLoginViewController: PBaseViewController {
     }
     
     func layoutSubviews() {
-        containerView = UIView(frame: CGRect(x: 0, y: 100, width: self.view.width, height: 200))
+        containerView = UIView(frame: CGRect(x: 0, y: 80, width: self.view.width, height: 200))
         self.view.addSubview(containerView!)
         
-        let label = UILabel(frame: CGRect(x: 0, y: 0, width: containerView!.width, height: 60))
-        label.font = PFont(size: 18)
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: containerView!.width, height: 80))
+        label.font = PFont(size: 20)
         label.numberOfLines = 0
         let text = """
         昔我往矣 杨柳依依
@@ -47,39 +47,42 @@ class PLoginViewController: PBaseViewController {
         let style = NSMutableParagraphStyle()
         style.lineSpacing = 6
         attr.addAttribute(NSAttributedStringKey.paragraphStyle, value: style, range: NSMakeRange(0, attr.length))
-        
+        label.textColor = UIColor.titleColor
         label.attributedText = attr
         label.textAlignment = .center
         containerView?.addSubview(label)
         // 手机号
-        mobileTextField = PTextField(frame: CGRect(x: 32, y: label.bottom + 20, width: containerView!.width - 64, height: 44))
-        mobileTextField?.backgroundColor = UIColor.colorWith(hex: "2acae7", alpha: 1)
+        mobileTextField = PTextField(frame: CGRect(x: 32, y: label.bottom + 40, width: containerView!.width - 64, height: 44))
+        mobileTextField?.backgroundColor = UIColor.greenColor
         mobileTextField?.textColor = UIColor.white
-        mobileTextField?.font = PFont(size: 14)
+        mobileTextField?.font = PFont(size: 16)
         mobileTextField?.placeholder = "手机号"
         mobileTextField?.keyboardType = .numberPad
+        mobileTextField?.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         containerView?.addSubview(mobileTextField!)
         
         // 验证码
         codeTextField = PTextField(frame: CGRect(x: mobileTextField!.left, y: mobileTextField!.bottom + 10, width: mobileTextField!.width - 50, height: mobileTextField!.height))
-        codeTextField?.backgroundColor = UIColor.colorWith(hex: "2acae7", alpha: 1)
+        codeTextField?.backgroundColor = UIColor.greenColor
         codeTextField?.textColor = UIColor.white
-        codeTextField?.font = PFont(size: 14)
+        codeTextField?.font = PFont(size: 16)
         codeTextField?.placeholder = "验证码"
+        codeTextField?.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         codeTextField?.keyboardType = .numberPad
         containerView?.addSubview(codeTextField!)
         
         // 获取验证码button
         codeButton = UIButton(frame: CGRect(x: codeTextField!.right, y: codeTextField!.top + 5, width: 60, height: codeTextField!.height - 10))
         codeButton?.setTitle("验证码", for: .normal)
-        codeButton?.titleLabel?.font = PFont(size: 12)
+        codeButton?.titleLabel?.font = PFont(size: 14)
         codeButton?.setTitleColor(UIColor.titleColor, for: .normal)
         codeButton?.addTarget(self, action: #selector(getCode), for: .touchUpInside)
         containerView?.addSubview(codeButton!)
         
-        let loginBtn = UIButton(frame: CGRect(x: 32, y: codeTextField!.bottom + 10, width: containerView!.width - 64, height: 44))
-        loginBtn.backgroundColor = UIColor.colorWith(hex: "2acae7")
-        loginBtn.titleLabel?.font = PFont(size: 14)
+        let loginBtn = UIButton(frame: CGRect(x: 32, y: codeTextField!.bottom + 20, width: containerView!.width - 64, height: 44))
+        loginBtn.backgroundColor = UIColor.greenColor
+        
+        loginBtn.titleLabel?.font = PFont(size: 16)
         loginBtn.setTitle("登录", for: .normal)
         loginBtn.setTitleColor(UIColor.white, for: .normal)
         loginBtn.addTarget(self, action: #selector(login), for: .touchUpInside)
@@ -99,7 +102,7 @@ class PLoginViewController: PBaseViewController {
         containerView?.addSubview(protocolBtn)
         protocolBtn.titleLabel?.font = protocolLabel.font
         protocolBtn.setTitle(suffixString as String, for: .normal)
-        protocolBtn.setTitleColor(UIColor.colorWith(hex: "2acae7"), for: .normal)
+        protocolBtn.setTitleColor(UIColor.greenColor, for: .normal)
         protocolBtn.addTarget(self, action: #selector(lookupProtocol), for: .touchUpInside)
         
         protocolLabel.left = (containerView!.width - (prefixWidth + suffixWidth)) / 2.0
@@ -125,15 +128,15 @@ class PLoginViewController: PBaseViewController {
             return
         }
         
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(countDown), userInfo: nil, repeats: true)
-        codeButton?.setTitle(String(countDownNumber), for: .normal)
-        codeButton?.isUserInteractionEnabled = false
-        
         PHttpManager.requestAsynchronous(url: "/mobile/sendCode", method: .get, parameters:["mobile": mobileTextField!.text!]) { result in
             
             if result.code != 200 {
                 Hud.show(content: result.message)
             } else {
+                self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.countDown), userInfo: nil, repeats: true)
+                self.codeButton?.setTitle(String(self.countDownNumber), for: .normal)
+                self.codeButton?.isUserInteractionEnabled = false
+                
                 Hud.show(content: "验证码已发送")
             }
         }
@@ -195,6 +198,7 @@ class PLoginViewController: PBaseViewController {
                     profileController.user = PUserSession.instance.session?.user
                     profileController.title = "完善个人信息"
                     let navController = PNavigationController(rootViewController: profileController)
+                    profileController.isPoped = false
                     self.present(navController, animated: true, completion: nil)
                 } else {
                     NotificationCenter.default.post(name: PUserSessionChanged, object: nil, userInfo: nil)
@@ -203,7 +207,25 @@ class PLoginViewController: PBaseViewController {
         }
     }
     
-    @objc func lookupProtocol() {
+    @objc func textFieldDidChange(textField: UITextField) {
         
+        if let text = textField.text {
+            if textField == mobileTextField {
+                if text.count > 11 {
+                    textField.text = text.substring(toIndex: 11)
+                }
+            } else {
+                if text.count > 6 {
+                    textField.text = text.substring(toIndex: 6)
+                }
+            }
+        }
+    }
+    
+    @objc func lookupProtocol() {
+        let webController = PWebViewController()
+        webController.url = "http://p6yj8z7ry.bkt.clouddn.com/%E7%94%A8%E6%88%B7%E5%8D%8F%E8%AE%AE.pdf"
+        webController.title = "用户协议"
+        self.navigationController?.pushViewController(webController, animated: true)
     }
 }

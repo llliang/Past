@@ -23,7 +23,11 @@ class PBaseViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated
+        )
         self.navigationItem.backBarButtonItem = nil
+        self.navigationController?.isNavigationBarHidden = false
+        
         if let _ = self.navigationController {
             if (self.navigationController?.viewControllers.count)! > 1 {
                 self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "返回", style: .left, target: self, action: #selector(back))
@@ -32,7 +36,6 @@ class PBaseViewController: UIViewController {
             }
         }
     }
-    
     
     @objc func back() {
         self.navigationController?.popViewController(animated: true)

@@ -11,9 +11,14 @@ import Alamofire
 
 //let HostName = "http://localhost:3000"
 
-let HostName = "http://192.168.3.92:3000" // 公司
-//let HostName = "http://192.168.0.100:3000" // 家
+#if DEBUG
+//let HostName = "http://192.168.3.92:3000" // 公司
+    let HostName = "https://www.haomin.pub" // 生产
+#else
+    let HostName = "https://www.haomin.pub" // 生产
+#endif
 
+//let HostName = "http://192.168.0.100:3000" // 家
 
 class PHttpManager {
     
@@ -65,12 +70,13 @@ class PHttpManager {
                     completion(Result(code:Int(truncating: result["code"] as! NSNumber), data: result["data"], message: result["message"] as! String, error: nil))
                     if result["code"]?.int64Value == -10001 {
                         PUserSession.instance.exitSession()
+                        Hud.show(content: "用户在别处登录")
                     }
                 }
             } else {
                 print(response.result.error.debugDescription) //
 //                completion(nil, NSError(domain: response.result.error.debugDescription, code: -100001, userInfo: nil))
-                completion(Result(code: -100001, data: nil, message: "", error: NSError(domain: response.result.error.debugDescription, code: -100001, userInfo: nil)))
+                completion(Result(code: -100001, data: nil, message: "", error: NSError(domain: "连接服务器出错", code: -100001, userInfo: nil)))
             }
         }
     }

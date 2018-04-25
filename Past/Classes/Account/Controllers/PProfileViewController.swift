@@ -44,17 +44,14 @@ class PProfileViewController: PBaseViewController, UITableViewDelegate, UITableV
   
         if !self.isPoped {
             self.navigationItem.leftBarButtonItem = nil
-            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "跳过", style: .right, target: self, action: #selector(ingnor))
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "完成", style: .right, target: self, action: #selector(ingnor))
             self.title = "完善信息"
         }
     }
     
     @objc func ingnor() {
-        let alertController = UIAlertController(title: "友情提示", message: "完善信息有助于其他人了解你", actions: ["以后完善"], cancel: "现在完善", preferredStyle: .alert) { (idx) in
-            self.dismiss(animated: true, completion: nil)
-            NotificationCenter.default.post(name: PUserSessionChanged, object: nil, userInfo: nil)
-        }
-        self.present(alertController, animated: true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
+        NotificationCenter.default.post(name: PUserSessionChanged, object: nil, userInfo: nil)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -141,7 +138,7 @@ class PProfileViewController: PBaseViewController, UITableViewDelegate, UITableV
         case 0:
             let tfController = PTextFieldController()
             tfController.title = "修改昵称"
-            tfController.maxCount = 7
+            tfController.maxCount = 12
             tfController.text = session?.user?.nickname
             tfController.placeholder = "用户昵称"
             tfController.didText { (text) in
@@ -199,6 +196,7 @@ class PProfileViewController: PBaseViewController, UITableViewDelegate, UITableV
     @objc func sendMail() {
         let controller = PMailViewController()
         controller.addressee = self.user
+        controller.sender = PUserSession.instance.session?.user
         self.navigationController?.pushViewController(controller, animated: true)
     }
     

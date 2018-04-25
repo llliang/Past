@@ -15,10 +15,20 @@ class PMineViewController: PBaseViewController, UITableViewDelegate, UITableView
     let source = ["基础资料", "账户余额", "用户协议"]
     var exitCell: PTableViewCell?
     
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: PUserSessionChanged, object: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.layoutSubviews()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadData), name: PUserSessionChanged, object: nil)
+    }
+    
+    @objc func reloadData() {
+        tableView?.reloadData()
     }
     
     func layoutSubviews() {
@@ -90,13 +100,20 @@ class PMineViewController: PBaseViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if 0 == indexPath.section {
             if 0 == indexPath.row {
+                
                 let profileController = PProfileViewController()
                 profileController.user = PUserSession.instance.session?.user
                 self.navigationController?.pushViewController(profileController, animated: true)
             } else if (1 == indexPath.row) {
                 
+                let controller = PPaymentViewController()
+                controller.modalPresentationStyle = .overCurrentContext
+                self.navigationController?.present(controller, animated: true, completion: nil)
             } else {
-                
+                let webController = PWebViewController()
+                webController.url = "http://p6yj8z7ry.bkt.clouddn.com/%E7%94%A8%E6%88%B7%E5%8D%8F%E8%AE%AE.pdf"
+                webController.title = "用户协议"
+                self.navigationController?.pushViewController(webController, animated: true)
             }
         }
     }

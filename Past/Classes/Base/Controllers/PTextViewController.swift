@@ -77,8 +77,6 @@ class PTextViewController: PBaseViewController, UITextViewDelegate {
                 return false
             }
         }
-        
-        
         return true
     }
     

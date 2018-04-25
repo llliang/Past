@@ -54,6 +54,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     @objc func initializeRootViewController() {
         if PUserSession.instance.validSession() {
+            if let rootViewController = window?.rootViewController {
+                let navigationController = rootViewController as! PNavigationController
+                if navigationController.viewControllers.first is PMainViewController {
+                    return
+                }
+            }
             window?.rootViewController = PNavigationController(rootViewController: PMainViewController())
         } else {
             window?.rootViewController = PNavigationController(rootViewController: PLoginViewController())

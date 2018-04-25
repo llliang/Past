@@ -68,6 +68,11 @@ extension UIColor {
         return UIColor.colorWith(hex: "999999", alpha: 1)
     }()
     
+    /// 分隔线颜色
+    static var seperatorColor: UIColor = {
+        return UIColor.colorWith(hex: "e1e1e1", alpha: 0.7)
+    }()
+    
     /// 自定义绿色
     static var greenColor: UIColor = {
         return UIColor.colorWith(hex: "0bcfe1", alpha: 0.9)

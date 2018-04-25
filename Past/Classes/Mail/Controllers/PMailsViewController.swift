@@ -15,8 +15,9 @@ class PMailsViewController: PRefreshTableViewController<PMail, [PMail]> {
     override func viewDidLoad() {
         dataModel.url = "/mail/mails"
         dataModel.params = ["sender": String((PUserSession.instance.session?.user?.userId)!),"addressee": String((other?.userId)!)]
+        
         super.viewDidLoad()
-        self.title = "与\(other?.nickname ?? "")的信件"
+        self.title = "来往"
 
         var gender = "Ta"
         if other?.gender == 0 {

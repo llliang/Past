@@ -17,7 +17,7 @@ let defaultHudWidth: CGFloat = UIScreen.main.bounds.width*2/5
 
 // MARK: ----
 
-class Hud{
+class Hud {
     static let instance = Hud()
     
     var window: UIWindow?
@@ -83,7 +83,7 @@ class Hud{
     
     // 菊花
     class func showHudView(inView: UIView, lock: Bool) {
-        self.instance.show(image: nil, activity: true, content: "", withTime: defaultTime, lock: lock, inView: inView)
+        self.instance.show(image: nil, activity: true, content: nil, withTime: -1, lock: lock, inView: inView)
     }
     
     class func hide() {
@@ -131,6 +131,9 @@ class Hud{
     }
     
     private func hide() {
+        if let hudActivityView = self.hudView.hudActivityView {
+            hudActivityView.stopAnimating()
+        }
         UIView.animate(withDuration: 0.25, delay: 0, options: [.curveEaseIn, .allowUserInteraction], animations: {
             self.hudView.alpha = 0
             self.overlayView?.alpha = 0
@@ -155,7 +158,7 @@ class HudView: UIView {
     
     lazy var hudContentLabel: UILabel? = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 16)
+        label.font = PFont(size: 16)
         label.textAlignment = .center
         label.textColor = UIColor.white
         label.numberOfLines = 0
@@ -163,7 +166,8 @@ class HudView: UIView {
     }()
     
     lazy var hudActivityView: UIActivityIndicatorView? = {
-        let hudView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.white)
+        let hudView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.whiteLarge)
+        hudView.autoresizingMask = [.flexibleTopMargin, .flexibleHeight]
         return hudView
     }()
     
@@ -171,7 +175,11 @@ class HudView: UIView {
         if image != nil && activity == true {
             assert(false, "图片和菊花不能同时出现")
         }
-        let contentSize = content?.size(font: (hudContentLabel?.font)!, constrainedSize: CGSize(width: defaultHudWidth - 20, height: CGFloat.greatestFiniteMagnitude))
+        var contentSize = CGSize.zero
+        if let text = content {
+            contentSize = text.size(font: (hudContentLabel?.font)!, constrainedSize: CGSize(width: defaultHudWidth - 20, height: CGFloat.greatestFiniteMagnitude))
+        }
+        
         hudContentLabel?.text = content
         
         if image != nil {
@@ -188,7 +196,7 @@ class HudView: UIView {
             hudImageView?.isHidden = true
             
             hudActivityView?.center = CGPoint(x: defaultHudWidth/2, y: 20+(hudActivityView?.height)!/2);
-            
+            hudActivityView?.startAnimating()
             hudContentLabel?.top = (hudActivityView?.bottom)! + 20
         } else {
             hudActivityView?.isHidden = true
@@ -196,12 +204,21 @@ class HudView: UIView {
             
             hudContentLabel?.top = 20
         }
-        hudContentLabel?.height = (contentSize?.height)!
+        
+        hudContentLabel?.height = contentSize.height
         hudContentLabel?.width = defaultHudWidth - 20
         hudContentLabel?.left = 5
         
         self.width = defaultHudWidth;
-        self.height = (hudContentLabel?.bottom)! + 20
+
+        if contentSize.height == 0 {
+            self.height = defaultHudWidth
+            hudImageView?.center = CGPoint(x: defaultHudWidth/2, y: defaultHudWidth/2);
+            hudActivityView?.center = CGPoint(x: defaultHudWidth/2, y: defaultHudWidth/2);
+
+        } else {
+            self.height = (hudContentLabel?.bottom)! + 20
+        }
         
         if !self.subviews.contains(hudImageView!) {
             self.addSubview(hudImageView!)

@@ -13,5 +13,5 @@ struct PStamp: Entity {
     var name: String?
     var image: String?
     var price: Int?
-    var expiry: Int?
+    var period: Int?
 }
