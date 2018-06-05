@@ -9,12 +9,10 @@
 import UIKit
 
 class PBaseViewController: UIViewController {
-
-    var isPoped: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.colorWith(hex: "f3f3f3")
+        self.view.backgroundColor = UIColor.mainBackgroundColor
 
         guard #available(iOS 11, *) else {
             self.automaticallyAdjustsScrollViewInsets = false
@@ -23,8 +21,8 @@ class PBaseViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated
-        )
+        super.viewWillAppear(animated)
+
         self.navigationItem.backBarButtonItem = nil
         self.navigationController?.isNavigationBarHidden = false
         

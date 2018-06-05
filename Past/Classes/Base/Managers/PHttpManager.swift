@@ -9,16 +9,16 @@
 import Foundation
 import Alamofire
 
-//let HostName = "http://localhost:3000"
 
 #if DEBUG
+    let production = false
 //let HostName = "http://192.168.3.92:3000" // 公司
+//let HostName = "http://192.168.0.103:3000" // 家
     let HostName = "https://www.haomin.pub" // 生产
 #else
+    let production = true
     let HostName = "https://www.haomin.pub" // 生产
 #endif
-
-//let HostName = "http://192.168.0.100:3000" // 家
 
 class PHttpManager {
     
@@ -42,7 +42,7 @@ class PHttpManager {
         }
         
         #if DEBUG
-            var string = "?softversion=\(Util.appVersion())&systype=ios&sysversion=\(Util.systemVersion())"
+            var string = "?"// "?softversion=\(Util.appVersion())&systype=ios&sysversion=\(Util.systemVersion())"
             if let ps = params {
                 for key in ps.keys {
                     var value: String
@@ -52,9 +52,10 @@ class PHttpManager {
                     } else {
                         value = val as! String
                     }
-                    string = string + "&" + key + "=" + value
+                    string = string + key + "=" + value + "&"
                 }
             }
+            string = string.substring(toIndex: string.count - 1)
             print(HostName + url + string)
         #endif
 

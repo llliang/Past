@@ -10,14 +10,19 @@ import UIKit
 
 class PSquareViewController: PRefreshTableViewController<PUser, [PUser]> {
 
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.init("app.past.add.blacklist"), object: nil)
+    }
+    
     override func viewDidLoad() {
         
         dataModel.url = "/square/users"
         super.viewDidLoad()
         self.title = "缘"
+        NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: NSNotification.Name.init("app.past.add.blacklist"), object: nil)
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func refreshTableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let identifier = "PSquareTableViewCell"
         var cell = tableView.dequeueReusableCell(withIdentifier: identifier) as? PSquareTableViewCell
@@ -29,14 +34,15 @@ class PSquareViewController: PRefreshTableViewController<PUser, [PUser]> {
         return cell!
     }
     
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    override func refreshTableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return PSquareTableViewCell.cellHeight(with:nil)
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override func refreshTableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
         let controller = PProfileViewController()
         controller.user = dataModel.item(ofIndex: indexPath.row) as? PUser
+        controller.isPoped = true
         self.navigationController?.pushViewController(controller, animated: true)
     }
     

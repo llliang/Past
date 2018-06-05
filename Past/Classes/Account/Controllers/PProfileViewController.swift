@@ -10,9 +10,11 @@ import UIKit
 
 class PProfileViewController: PBaseViewController, UITableViewDelegate, UITableViewDataSource {
     
+    var isPoped: Bool = false
+    
     var tableView: UITableView?
     
-    // 若是自己则可以编辑 不然指示浏览
+    // 若是自己则可以编辑 不然只是浏览
     var user: PUser?
     
     var sendCell: PTableViewCell?
@@ -21,10 +23,12 @@ class PProfileViewController: PBaseViewController, UITableViewDelegate, UITableV
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView = UITableView(frame: self.view.bounds, style: .grouped)
+        tableView = UITableView(frame: self.view.bounds, style: .plain)
         tableView?.delegate = self
         tableView?.dataSource = self
         tableView?.tableFooterView = UIView()
+        tableView?.backgroundColor = UIColor.clear
+        tableView?.contentInset = UIEdgeInsetsMake(10, 0, 0, 0)
         self.view.addSubview(tableView!)
         self.title = "个人信息"
         isSelf = (user?.userId == PUserSession.instance.session?.user?.userId)
@@ -35,7 +39,7 @@ class PProfileViewController: PBaseViewController, UITableViewDelegate, UITableV
         btn.backgroundColor = UIColor.greenColor
         btn.titleLabel?.font = PFont(size: 18)
         btn.setTitle("写信", for: .normal)
-        btn.addTarget(self, action: #selector(sendMail), for: .touchUpInside)
+        btn.addTarget(self, action: #selector(sendLetter), for: .touchUpInside)
         sendCell?.addSubview(btn)
     }
     
@@ -46,6 +50,10 @@ class PProfileViewController: PBaseViewController, UITableViewDelegate, UITableV
             self.navigationItem.leftBarButtonItem = nil
             self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "完成", style: .right, target: self, action: #selector(ingnor))
             self.title = "完善信息"
+        } else {
+            if !isSelf {
+                self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "拉黑", style: .right, target: self, action: #selector(shield))
+            }
         }
     }
     
@@ -53,6 +61,39 @@ class PProfileViewController: PBaseViewController, UITableViewDelegate, UITableV
         self.dismiss(animated: true, completion: nil)
         NotificationCenter.default.post(name: PUserSessionChanged, object: nil, userInfo: nil)
     }
+    
+    @objc func shield() {
+        let setterId = (PUserSession.instance.session?.user?.userId)!
+        let getterId = user!.userId
+        PHttpManager.requestAsynchronous(url: "/blacklist/add", method: .post, parameters: ["setter": setterId, "getter": getterId]) { (result) in
+            if let error = result.error {
+                Hud.show(content: error.domain)
+            } else {
+                self.navigationController?.popViewController(animated: true)
+                
+                /// 通知相关界面更新数据
+                NotificationCenter.default.post(name: NSNotification.Name.init("app.past.add.blacklist"), object: nil)
+                
+                let alertController = UIAlertController(title: nil, message: "可在->相->黑名单 中取消拉黑", actions: nil, cancel: "我知道了", preferredStyle: UIAlertControllerStyle.alert, handle: { (index) in
+                })
+                self.navigationController?.viewControllers.last?.present(alertController, animated: true, completion: nil)
+            }
+        }
+    }
+    
+//    @objc func complain() {
+//        let actions = ["发布不适内容骚扰", "存在欺诈骗钱行为", "发布反动信息"]
+//        let alertController = UIAlertController(title: "投诉", message: nil, actions: actions, cancel: "取消", preferredStyle: .actionSheet) { (index) in
+//            PHttpManager.requestAsynchronous(url: "/complain/submit", method: .post, parameters: ["complainant": (PUserSession.instance.session?.user?.userId)!, "respondent": self.user!.userId, "content": actions[index]], completion: { (result) in
+//                if let error = result.error {
+//                    Hud.show(content: error.domain)
+//                } else {
+//                    Hud.show(content: "已举报")
+//                }
+//            })
+//        }
+//        self.present(alertController, animated: true, completion: nil)
+//    }
     
     func numberOfSections(in tableView: UITableView) -> Int {
         if isSelf {
@@ -86,6 +127,8 @@ class PProfileViewController: PBaseViewController, UITableViewDelegate, UITableV
             }
         }
         
+        cell?.separatorInset = UIEdgeInsetsMake(0, 15, 0, 0)
+        
         switch indexPath.row {
         case 0:
             cell?.leftLabel?.text = "昵称"
@@ -103,6 +146,7 @@ class PProfileViewController: PBaseViewController, UITableViewDelegate, UITableV
         default:
             cell?.leftLabel?.text = "自我介绍"
             cell?.rightLabel?.text = user?.description
+            cell?.separatorInset = UIEdgeInsetsMake(0, self.view.width/2, 0, self.view.width/2)
         }
         return cell!
     }
@@ -116,17 +160,14 @@ class PProfileViewController: PBaseViewController, UITableViewDelegate, UITableV
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if 1 == section {
-            return 10
+            return 20
         }
-        return 10
+        return 0
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if !isSelf {
-            if indexPath.section == 1 {
-                
-            }
             return
         }
         
@@ -193,10 +234,9 @@ class PProfileViewController: PBaseViewController, UITableViewDelegate, UITableV
         }
     }
     
-    @objc func sendMail() {
-        let controller = PMailViewController()
+    @objc func sendLetter() {
+        let controller = PWriteLetterViewController()
         controller.addressee = self.user
-        controller.sender = PUserSession.instance.session?.user
         self.navigationController?.pushViewController(controller, animated: true)
     }
     

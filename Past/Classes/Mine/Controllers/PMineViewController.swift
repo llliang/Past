@@ -12,7 +12,7 @@ class PMineViewController: PBaseViewController, UITableViewDelegate, UITableView
 
     var tableView: UITableView?
     
-    let source = ["基础资料", "账户余额", "用户协议"]
+    let source = [["基础资料", "账户余额", "换/绑手机"], ["黑名单"], ["用户协议"]]
     var exitCell: PTableViewCell?
     
     deinit {
@@ -35,6 +35,8 @@ class PMineViewController: PBaseViewController, UITableViewDelegate, UITableView
         tableView = UITableView(frame: self.view.bounds, style: .grouped)
         
         tableView?.autoresizingMask = UIViewAutoresizing.flexibleHeight
+//        tableView?.separatorStyle = UITableViewCellSeparatorStyle.singleLine
+        tableView?.backgroundColor = UIColor.clear
         tableView?.delegate = self
         tableView?.dataSource = self
         tableView?.tableFooterView = UIView()
@@ -51,18 +53,18 @@ class PMineViewController: PBaseViewController, UITableViewDelegate, UITableView
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return source.count + 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 1 {
+        if section == source.count {
             return 1
         }
-        return 3
+        return source[section].count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if 1 == indexPath.section {
+        if source.count == indexPath.section {
             return exitCell!
         }
         let identifier = "mineCell"
@@ -70,10 +72,10 @@ class PMineViewController: PBaseViewController, UITableViewDelegate, UITableView
         if cell == nil {
             cell = PTableViewCell(style: [.description, .content, .arrow], reuseIdentifier: identifier)
         }
-        cell?.leftLabel?.text = source[indexPath.row]
+        cell?.leftLabel?.text = source[indexPath.section][indexPath.row]
         cell?.rightLabel?.textColor = UIColor.textColor
-        if 1 == indexPath.row {
-            cell?.rightLabel?.text = "\(PUserSession.instance.session?.balance ?? 0)"
+        if 1 == indexPath.row && indexPath.section == 0 {
+            cell?.rightLabel?.text = "\(PUserSession.instance.session?.balance ?? 0)₩"
             cell?.rightLabel?.textColor = UIColor.colorWith(hex: "fa3d3d", alpha: 0.9)
         }
         return cell!
@@ -84,17 +86,29 @@ class PMineViewController: PBaseViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if 1 == section {
+        if source.count == section {
+            return UIView()
+        }
+        return nil
+    }
+
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        if source.count == section {
             return UIView()
         }
         return nil
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if 1 == section {
-            return 10
+
+        if source.count == section {
+            return 20
         }
         return 10
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return CGFloat.leastNonzeroMagnitude
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -103,19 +117,28 @@ class PMineViewController: PBaseViewController, UITableViewDelegate, UITableView
                 
                 let profileController = PProfileViewController()
                 profileController.user = PUserSession.instance.session?.user
+                profileController.isPoped = true
                 self.navigationController?.pushViewController(profileController, animated: true)
-            } else if (1 == indexPath.row) {
-                
+            } else if 1 == indexPath.row{
                 let controller = PPaymentViewController()
                 controller.modalPresentationStyle = .overCurrentContext
                 self.navigationController?.present(controller, animated: true, completion: nil)
             } else {
-                let webController = PWebViewController()
-                webController.url = "http://p6yj8z7ry.bkt.clouddn.com/%E7%94%A8%E6%88%B7%E5%8D%8F%E8%AE%AE.pdf"
-                webController.title = "用户协议"
-                self.navigationController?.pushViewController(webController, animated: true)
+                let controller = PBindPhoneViewController()
+                self.navigationController?.pushViewController(controller, animated: true)
             }
+        } else if 1 == indexPath.section {
+            let blacklistController = PBlacklistViewController()
+            blacklistController.title = "黑名单"
+            self.navigationController?.pushViewController(blacklistController, animated: true)
+            
+        } else {
+            let webController = PWebViewController()
+            webController.url = "http://p6yj8z7ry.bkt.clouddn.com/%E7%94%A8%E6%88%B7%E5%8D%8F%E8%AE%AE.pdf"
+            webController.title = "用户协议"
+            self.navigationController?.pushViewController(webController, animated: true)
         }
+        
     }
     
     @objc func exit() {

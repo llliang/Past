@@ -50,7 +50,7 @@ class PPaymentViewController: PBaseViewController, PProductsViewDelegate, SKProd
         bottomView = UIView(frame: CGRect(x: 6, y: 0, width: self.view.width - 12, height: 0))
         bottomView?.layer.cornerRadius = 5
         bottomView?.layer.masksToBounds = true
-        bottomView?.backgroundColor = UIColor.white
+        bottomView?.backgroundColor = UIColor.tintColor
         self.view.addSubview(bottomView!)
         
         let topView = UIView(frame: CGRect(x: 0, y: 0, width: bottomView!.width, height: 40))
@@ -114,7 +114,14 @@ class PPaymentViewController: PBaseViewController, PProductsViewDelegate, SKProd
     }
     
     @objc func purchaseNotice() {
+        let webController = PWebViewController()
+        webController.url = "http://p6yj8z7ry.bkt.clouddn.com/%E5%85%85%E5%80%BC%E9%A1%BB%E7%9F%A5.pdf"
+        webController.title = "充值须知"
+        let navigation = PNavigationController(rootViewController: webController)
         
+        webController.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "取消", style: .right, target: webController, action: #selector(webController.dismissController))
+        
+        self.present(navigation, animated: true, completion: nil)
     }
     
     func product(buyIndex: Int) {

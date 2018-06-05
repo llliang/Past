@@ -17,8 +17,6 @@ class PStampView: UIButton {
     override init(frame: CGRect) {
         super.init(frame: frame)
         percentLabel = UILabel(frame: CGRect(x: 15, y: 10, width: frame.width - 30, height: 16))
-//        percentLabel?.shadowColor = UIColor.placeholderColor
-//        percentLabel?.shadowOffset = CGSize(width: 0.5, height: 0.5)
         percentLabel?.font = PFont(size: 12)
         percentLabel?.textColor = UIColor.white
         self.addSubview(percentLabel!)
@@ -27,8 +25,6 @@ class PStampView: UIButton {
         periodLabel?.font = PFont(size: 12)
         periodLabel?.textColor = UIColor.white
         periodLabel?.textAlignment = .right
-//        periodLabel?.shadowColor = UIColor.placeholderColor
-//        periodLabel?.shadowOffset = CGSize(width: 0.5, height: 0.5)
         self.addSubview(periodLabel!)
     }
     
@@ -42,7 +38,7 @@ class PStampView: UIButton {
                 self.kf.setImage(with: URL(string: url), for: .normal, placeholder: nil, options: nil, progressBlock: nil) { (image, error, type, url) in
                     self.setImage(image, for: .highlighted)
                 }
-                percentLabel?.text = "\(stamp.price ?? 0)"
+                percentLabel?.text = "\(stamp.price ?? 0)₩"
                 let day = stamp.period!/(24*60*60)
                 let hour = (stamp.period! - day*24*60*60)/(60*60)
                 if day > 0 {

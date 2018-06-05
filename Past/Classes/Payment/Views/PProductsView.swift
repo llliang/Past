@@ -16,10 +16,10 @@ class PProductItemView: UIButton {
     
     var product: PProduct? {
         didSet {
-            contentButton?.setImage(UIImage(named: "payment_icon"), for: .normal)
-            contentButton?.setTitle(" \(product!.value)", for: .normal)
+//            contentButton?.setImage(UIImage(named: "payment_icon"), for: .normal)
+            contentButton?.setTitle("\(product!.value) ₩", for: .normal)
             
-            priceLabel?.text = "¥ \(product!.price)"
+            priceLabel?.text = "¥\(product!.price)"
         }
     }
     

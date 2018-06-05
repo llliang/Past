@@ -9,6 +9,15 @@
 import UIKit
 
 class PPlaceholderTextView: UITextView {
+    
+    var lineSpacing: CGFloat = 0 {
+        didSet {
+            let paragraphStyle = NSMutableParagraphStyle()
+            paragraphStyle.lineSpacing = lineSpacing
+            paragraphStyle.firstLineHeadIndent = self.font!.pointSize*2
+            self.typingAttributes = [NSAttributedStringKey.font.rawValue: self.font!, NSAttributedStringKey.paragraphStyle.rawValue: paragraphStyle]
+        }
+    }
 
     deinit {
         NotificationCenter.default.removeObserver(self)
@@ -39,11 +48,31 @@ class PPlaceholderTextView: UITextView {
         }
     }
     
-    override var text: String! {
+    override var attributedText: NSAttributedString! {
         didSet {
-            placeholderTextView?.isHidden = (text != nil) && text.count > 0
+            placeholderTextView?.isHidden = (attributedText != nil) && attributedText.length > 0
         }
     }
+    
+//    override func draw(_ rect: CGRect) {
+//        let context = UIGraphicsGetCurrentContext()
+//        context?.setStrokeColor(UIColor.greenColor.cgColor)
+//        context?.setLineWidth(0.5)
+//        context?.beginPath()
+//
+//        let numberOfLines = self.contentSize.height/(self.font!.lineHeight + self.font!.leading + 10)
+//        let baselineOffset: CGFloat = 5
+//
+//        for i in 1...Int(numberOfLines) {
+//            context?.move(to: CGPoint(x: 0, y: self.contentInset.top + (self.font!.lineHeight + self.font!.leading + 10)*CGFloat(i) + baselineOffset))
+//            context?.addLine(to: CGPoint(x: self.width, y:  self.contentInset.top + (self.font!.lineHeight + self.font!.leading + 10)*CGFloat(i) + baselineOffset))
+//        }
+//        context?.draw(<#T##layer: CGLayer##CGLayer#>, at: <#T##CGPoint#>)
+//        context?.closePath()
+//        context?.strokePath()
+//
+//
+//    }
   
     init(frame: CGRect) {
         super.init(frame: frame, textContainer: nil)

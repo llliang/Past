@@ -43,7 +43,7 @@ class PTextViewController: PBaseViewController, UITextViewDelegate {
         
         textView = PPlaceholderTextView(frame: CGRect(x: 0, y: 10, width: self.view.width, height: 120))
         textView?.font = PFont(size: 16)
-        textView?.backgroundColor = UIColor.white
+        textView?.backgroundColor = UIColor.tintColor
         textView?.contentInset = UIEdgeInsetsMake(10, 0, 20, 10)
         textView?.returnKeyType = UIReturnKeyType.done
         textView?.delegate = self

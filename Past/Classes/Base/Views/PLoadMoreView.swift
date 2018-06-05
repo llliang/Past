@@ -8,18 +8,19 @@
 
 import UIKit
 
-class PLoadMoreView: UIView {
+class PLoadMoreView: PTableViewCell {
     
     var stateLabel: UILabel?
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    override init(style: PTableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: .default, reuseIdentifier: reuseIdentifier)
         
         stateLabel = UILabel(frame: self.bounds)
+        stateLabel?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         stateLabel?.font = PFont(size: 12)
         stateLabel?.textAlignment = .center
         stateLabel?.textColor = UIColor.textColor
-        self.addSubview(stateLabel!)
+        self.contentView.addSubview(stateLabel!)
     }
     
     required init?(coder aDecoder: NSCoder) {

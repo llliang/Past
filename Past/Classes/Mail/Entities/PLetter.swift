@@ -1,5 +1,5 @@
 //
-//  PMail.swift
+//  PLetter.swift
 //  Past
 //
 //  Created by jiangliang on 2018/4/12.
@@ -8,12 +8,13 @@
 
 import UIKit
 
-struct PMail: Entity {
+struct PLetter: Entity {
     var id: Int
     var sender: PUser
     var addressee: PUser
-    var stamp: PStamp
+//    var stamp: PStamp
     var content: String
     var time: Int
+    var receivingTime: Int
     var status: Int
 }

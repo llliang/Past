@@ -17,14 +17,20 @@ class PDataModel<Element: Entity, Type>: NSObject {
     
     var loading: Bool = false
     var canLoadMore: Bool = false
-    var isReload: Bool = true
+    var isReload: Bool = true {
+        didSet {
+            if isReload {
+                self.page = 1
+            }
+        }
+    }
     
     var limited: NSInteger = 20
     var page: NSInteger = 1
     
     var method: HTTPMethod = .get
     var url: String?
-    var params: Dictionary<String, String>?
+    var params = Dictionary<String, Any>()
     
     var itemCount: NSInteger = 0
     
@@ -35,6 +41,9 @@ class PDataModel<Element: Entity, Type>: NSObject {
         if !loading {
             start()
             loading = true
+            
+            params["page"] = self.page
+            params["limited"] = self.limited
             
             PHttpManager.requestAsynchronous(url: url!, method: method, parameters: params, completion: { result in
                 
@@ -81,7 +90,7 @@ class PDataModel<Element: Entity, Type>: NSObject {
             }
             
             itemCount = (tmpData?.count)!
-            
+            page += 1
         } else if source is Dictionary<String, Any> {
             let entity = Element.toEntity(data: source)
             self.data = entity as? Type

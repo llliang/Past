@@ -53,6 +53,12 @@ extension UIColor {
 }
 
 extension UIColor {
+    /// 主背景色
+    static var mainBackgroundColor: UIColor = {
+//        UIColor.colorWith(hex: "f3f3f3", alpha: 1)
+        UIColor.colorWith(hex: "e7e6e1", alpha: 1)
+
+    }()
     /// 标题颜色
     static var titleColor: UIColor = {
         return UIColor.colorWith(hex: "333333", alpha: 1)
@@ -75,11 +81,17 @@ extension UIColor {
     
     /// 自定义绿色
     static var greenColor: UIColor = {
-        return UIColor.colorWith(hex: "0bcfe1", alpha: 0.9)
+//        return UIColor.colorWith(hex: "0bcfe1", alpha: 1)
+        return UIColor.colorWith(hex: "60c1bf", alpha: 1)
     }()
     
     /// 自定义红色
     static var redColor: UIColor = {
         return UIColor.colorWith(hex: "fa3d3d", alpha: 0.9)
+    }()
+    
+    /// tintColor
+    static var tintColor: UIColor = {
+        return UIColor.colorWith(hex: "f7f6e7", alpha: 1)
     }()
 }

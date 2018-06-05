@@ -1,5 +1,5 @@
 //
-//  PMailTableViewCell.swift
+//  PLetterTableViewCell.swift
 //  Past
 //
 //  Created by jiangliang on 2018/4/19.
@@ -8,24 +8,33 @@
 
 import UIKit
 
-class PMailTableViewCell: PTableViewCell {
+class PLetterTableViewCell: PTableViewCell {
 
     var statusLabel: UILabel?
     var timeLabel: UILabel?
+    var dotView: UIView?
 
-    var mail: PMail? {
+    var letter: PLetter? {
+        
         didSet {
-            if mail?.sender.userId == PUserSession.instance.session?.user?.userId {
-                statusLabel?.text = "寄"
-                statusLabel?.layer.borderColor = UIColor.greenColor.cgColor
-            } else {
-                statusLabel?.text = "收"
-                statusLabel?.layer.borderColor = UIColor.redColor.cgColor
-            }
+            dotView?.isHidden = true
             
             let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "yyyy年MM月dd日 HH:mm:ss"
-            timeLabel?.text = dateFormatter.string(from: Date(timeIntervalSince1970: TimeInterval(mail!.time)))
+            dateFormatter.dateFormat = "yyyy年MM月dd日 HH:mm"
+            
+            if letter?.sender.userId == PUserSession.instance.session?.user?.userId {
+                statusLabel?.text = "寄"
+                statusLabel?.layer.borderColor = UIColor.textColor.cgColor
+                
+                timeLabel?.text = dateFormatter.string(from: Date(timeIntervalSince1970: TimeInterval(letter!.receivingTime))) + "送达"
+            } else {
+                statusLabel?.text = "收"
+                statusLabel?.layer.borderColor = UIColor.textColor.cgColor
+                if letter?.status == 0 {
+                    dotView?.isHidden = false
+                }
+                timeLabel?.text = dateFormatter.string(from: Date(timeIntervalSince1970: TimeInterval(letter!.time)))
+            }
         }
     }
     
@@ -40,13 +49,19 @@ class PMailTableViewCell: PTableViewCell {
         statusLabel?.layer.borderWidth = 1
         self.contentView.addSubview(statusLabel!)
         
+        dotView = UIView(frame: CGRect(x: statusLabel!.right - 5, y: statusLabel!.top - 2, width: 8, height: 8))
+        dotView?.backgroundColor = UIColor.redColor
+        dotView?.autoresizingMask = .flexibleTopMargin
+        dotView?.layer.masksToBounds = true
+        dotView?.layer.cornerRadius = 4
+        self.contentView.addSubview(dotView!)
+        
         timeLabel = UILabel(frame: CGRect(x: statusLabel!.right + 10, y: 0, width: UIScreen.main.bounds.width - 16 - 10 - statusLabel!.right, height: self.height))
         timeLabel?.textAlignment = .right
         timeLabel?.autoresizingMask = .flexibleHeight
         timeLabel?.font = PFont(size: 16)
         timeLabel?.textColor = UIColor.placeholderColor
         self.contentView.addSubview(timeLabel!)
-        
     }
     
     required init?(coder aDecoder: NSCoder) {

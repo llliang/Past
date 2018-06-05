@@ -24,6 +24,7 @@ class PWebViewController: PBaseViewController, WKNavigationDelegate {
         super.viewDidLoad()
 
         webView = WKWebView(frame: self.view.bounds)
+        webView?.backgroundColor = UIColor.clear
         webView?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         webView?.navigationDelegate = self
         self.view.addSubview(webView!)
@@ -34,6 +35,10 @@ class PWebViewController: PBaseViewController, WKNavigationDelegate {
         } else {
             Hud.show(content: "url未提供")
         }
+    }
+    
+    @objc func dismissController() {
+        self.dismiss(animated: true, completion: nil)
     }
     
     func destroyWebView() {

@@ -29,7 +29,7 @@ class PTextFieldController: PBaseViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         let backView = UIView(frame: CGRect(x: 0, y: 10, width: self.view.width, height: 44))
-        backView.backgroundColor = UIColor.white
+        backView.backgroundColor = UIColor.tintColor
         self.view.addSubview(backView)
         
         textField = UITextField(frame: CGRect(x: 16, y: 0, width: backView.width - 32, height: backView.height))

@@ -11,6 +11,7 @@ import Foundation
 struct PSession: Entity {
     
     var token: String?
+    var accountType: Int
     var register: Bool = false
     var balance: Int = 0
     var user: PUser?

@@ -8,19 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		3208D6DADA836131D54D4B49 /* Pods_Past.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89A9C4B270563D442B064B84 /* Pods_Past.framework */; };
+		3707148720BBACCB00A9AAE6 /* xingkai.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3707148620BBACCB00A9AAE6 /* xingkai.ttf */; };
 		370B6FE2207494B4007873A9 /* PLoadMoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370B6FE1207494B4007873A9 /* PLoadMoreView.swift */; };
 		370B6FE62074B7AC007873A9 /* PSquareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370B6FE52074B7AC007873A9 /* PSquareViewController.swift */; };
 		370B6FE82074B837007873A9 /* PProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370B6FE72074B837007873A9 /* PProfileViewController.swift */; };
-		370CAC2F207F38B90048F416 /* PMail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370CAC2E207F38B90048F416 /* PMail.swift */; };
+		370CAC2F207F38B90048F416 /* PLetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370CAC2E207F38B90048F416 /* PLetter.swift */; };
 		370CAC31208037ED0048F416 /* PMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370CAC30208037ED0048F416 /* PMainViewController.swift */; };
 		370CAC36208039F30048F416 /* PFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370CAC35208039F30048F416 /* PFriendsViewController.swift */; };
 		370CAC3B20803DFA0048F416 /* PMineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370CAC3A20803DFA0048F416 /* PMineViewController.swift */; };
-		370CAC3D208050800048F416 /* PMailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370CAC3C208050800048F416 /* PMailsViewController.swift */; };
+		370CAC3D208050800048F416 /* PLettersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370CAC3C208050800048F416 /* PLettersViewController.swift */; };
 		370CAC41208251000048F416 /* UIAlertControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370CAC40208251000048F416 /* UIAlertControllerExtension.swift */; };
 		3717C92020720ACA004551DC /* PRefreshTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3717C91F20720ACA004551DC /* PRefreshTableViewController.swift */; };
 		3717C92220720DB8004551DC /* PDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3717C92120720DB8004551DC /* PDataModel.swift */; };
 		3717C924207270A0004551DC /* PUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3717C923207270A0004551DC /* PUser.swift */; };
-		3725F19A207B7F5B006DF51C /* PMailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3725F199207B7F5B006DF51C /* PMailViewController.swift */; };
+		3725F19A207B7F5B006DF51C /* PWriteLetterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3725F199207B7F5B006DF51C /* PWriteLetterViewController.swift */; };
 		3725F19F207C9021006DF51C /* PStamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3725F19E207C9021006DF51C /* PStamp.swift */; };
 		3725F1A1207C9051006DF51C /* PSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3725F1A0207C9051006DF51C /* PSession.swift */; };
 		3725F1A4207CA1FF006DF51C /* mail_envelope_passed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3725F1A2207CA1FF006DF51C /* mail_envelope_passed@2x.png */; };
@@ -34,6 +35,7 @@
 		373CACD3208EDAAF0043088B /* payment_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 373CACD1208EDAAF0043088B /* payment_icon@3x.png */; };
 		373CACD4208EDAAF0043088B /* payment_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 373CACD2208EDAAF0043088B /* payment_icon@2x.png */; };
 		374241F2206407670074FDE2 /* NSStringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374241F1206407670074FDE2 /* NSStringExtension.swift */; };
+		374ADDED20A1F71400ACB92B /* PBindPhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374ADDEC20A1F71400ACB92B /* PBindPhoneViewController.swift */; };
 		37725FE52071D10200A2FADC /* PNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37725FE42071D10200A2FADC /* PNavigationController.swift */; };
 		37727AB320639E840097C599 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37727AB220639E840097C599 /* AppDelegate.swift */; };
 		37727ABA20639E840097C599 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37727AB920639E840097C599 /* Assets.xcassets */; };
@@ -47,12 +49,14 @@
 		379297632068BFA80072FBE7 /* Hud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379297622068BFA80072FBE7 /* Hud.swift */; };
 		379F3DB8206D31A400668839 /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379F3DB7206D31A400668839 /* Entity.swift */; };
 		37A56827206B31D3009F5B63 /* PCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A56826206B31D3009F5B63 /* PCacheManager.swift */; };
+		37B0C72A209AD287004880E9 /* PReadLetterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B0C729209AD287004880E9 /* PReadLetterViewController.swift */; };
 		37B261CA2067F43600D0F943 /* PHttpManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B261C92067F43600D0F943 /* PHttpManager.swift */; };
 		37B261CC2067F47A00D0F943 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B261CB2067F47A00D0F943 /* Util.swift */; };
 		37B261CE2067F5A900D0F943 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B261CD2067F5A900D0F943 /* StringExtension.swift */; };
-		37BD16B12087216500952751 /* xingkai.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 37BD16B02087216500952751 /* xingkai.ttf */; };
+		37C861CC20A134C1001877AD /* PBlacklistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C861CB20A134C1001877AD /* PBlacklistViewController.swift */; };
+		37C861CE20A13690001877AD /* PBlacklistTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C861CD20A13690001877AD /* PBlacklistTableViewCell.swift */; };
 		37D22930209017A40035BB79 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37D2292F209017A40035BB79 /* StoreKit.framework */; };
-		37DF15D42088907000C1AC88 /* PMailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DF15D32088907000C1AC88 /* PMailTableViewCell.swift */; };
+		37DF15D42088907000C1AC88 /* PLetterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DF15D32088907000C1AC88 /* PLetterTableViewCell.swift */; };
 		37E082E1207B488200BC51EC /* mail_envelope_stampZone@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37E082DB207B488200BC51EC /* mail_envelope_stampZone@3x.png */; };
 		37E082E5207B488200BC51EC /* mail_envelope_stampZone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37E082DF207B488200BC51EC /* mail_envelope_stampZone@2x.png */; };
 		37E25B7D208B20CC00575CE0 /* StringExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E25B7C208B20CC00575CE0 /* StringExtention.swift */; };
@@ -68,19 +72,22 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3700CE6A20B7ECCD009C1846 /* Past-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Past-Bridging-Header.h"; sourceTree = "<group>"; };
+		3700CE6B20B7ECCD009C1846 /* Past.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = Past.entitlements; sourceTree = "<group>"; };
+		3707148620BBACCB00A9AAE6 /* xingkai.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = xingkai.ttf; sourceTree = "<group>"; };
 		370B6FE1207494B4007873A9 /* PLoadMoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PLoadMoreView.swift; sourceTree = "<group>"; };
 		370B6FE52074B7AC007873A9 /* PSquareViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PSquareViewController.swift; sourceTree = "<group>"; };
 		370B6FE72074B837007873A9 /* PProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PProfileViewController.swift; sourceTree = "<group>"; };
-		370CAC2E207F38B90048F416 /* PMail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PMail.swift; sourceTree = "<group>"; };
+		370CAC2E207F38B90048F416 /* PLetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PLetter.swift; sourceTree = "<group>"; };
 		370CAC30208037ED0048F416 /* PMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PMainViewController.swift; sourceTree = "<group>"; };
 		370CAC35208039F30048F416 /* PFriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PFriendsViewController.swift; sourceTree = "<group>"; };
 		370CAC3A20803DFA0048F416 /* PMineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PMineViewController.swift; sourceTree = "<group>"; };
-		370CAC3C208050800048F416 /* PMailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PMailsViewController.swift; sourceTree = "<group>"; };
+		370CAC3C208050800048F416 /* PLettersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PLettersViewController.swift; sourceTree = "<group>"; };
 		370CAC40208251000048F416 /* UIAlertControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertControllerExtension.swift; sourceTree = "<group>"; };
 		3717C91F20720ACA004551DC /* PRefreshTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PRefreshTableViewController.swift; sourceTree = "<group>"; };
 		3717C92120720DB8004551DC /* PDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDataModel.swift; sourceTree = "<group>"; };
 		3717C923207270A0004551DC /* PUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PUser.swift; sourceTree = "<group>"; };
-		3725F199207B7F5B006DF51C /* PMailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMailViewController.swift; sourceTree = "<group>"; };
+		3725F199207B7F5B006DF51C /* PWriteLetterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PWriteLetterViewController.swift; sourceTree = "<group>"; };
 		3725F19E207C9021006DF51C /* PStamp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PStamp.swift; sourceTree = "<group>"; };
 		3725F1A0207C9051006DF51C /* PSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PSession.swift; sourceTree = "<group>"; };
 		3725F1A2207CA1FF006DF51C /* mail_envelope_passed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mail_envelope_passed@2x.png"; sourceTree = "<group>"; };
@@ -94,6 +101,7 @@
 		373CACD1208EDAAF0043088B /* payment_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "payment_icon@3x.png"; sourceTree = "<group>"; };
 		373CACD2208EDAAF0043088B /* payment_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "payment_icon@2x.png"; sourceTree = "<group>"; };
 		374241F1206407670074FDE2 /* NSStringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSStringExtension.swift; sourceTree = "<group>"; };
+		374ADDEC20A1F71400ACB92B /* PBindPhoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBindPhoneViewController.swift; sourceTree = "<group>"; };
 		37725FE42071D10200A2FADC /* PNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNavigationController.swift; sourceTree = "<group>"; };
 		37727AAF20639E840097C599 /* Past.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Past.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		37727AB220639E840097C599 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -109,12 +117,14 @@
 		379297622068BFA80072FBE7 /* Hud.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hud.swift; sourceTree = "<group>"; };
 		379F3DB7206D31A400668839 /* Entity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
 		37A56826206B31D3009F5B63 /* PCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCacheManager.swift; sourceTree = "<group>"; };
+		37B0C729209AD287004880E9 /* PReadLetterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PReadLetterViewController.swift; sourceTree = "<group>"; };
 		37B261C92067F43600D0F943 /* PHttpManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PHttpManager.swift; sourceTree = "<group>"; };
 		37B261CB2067F47A00D0F943 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		37B261CD2067F5A900D0F943 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
-		37BD16B02087216500952751 /* xingkai.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = xingkai.ttf; sourceTree = "<group>"; };
+		37C861CB20A134C1001877AD /* PBlacklistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBlacklistViewController.swift; sourceTree = "<group>"; };
+		37C861CD20A13690001877AD /* PBlacklistTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBlacklistTableViewCell.swift; sourceTree = "<group>"; };
 		37D2292F209017A40035BB79 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
-		37DF15D32088907000C1AC88 /* PMailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PMailTableViewCell.swift; sourceTree = "<group>"; };
+		37DF15D32088907000C1AC88 /* PLetterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PLetterTableViewCell.swift; sourceTree = "<group>"; };
 		37E082DB207B488200BC51EC /* mail_envelope_stampZone@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mail_envelope_stampZone@3x.png"; sourceTree = "<group>"; };
 		37E082DF207B488200BC51EC /* mail_envelope_stampZone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mail_envelope_stampZone@2x.png"; sourceTree = "<group>"; };
 		37E25B7C208B20CC00575CE0 /* StringExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtention.swift; sourceTree = "<group>"; };
@@ -197,6 +207,7 @@
 		370CAC3820803DDC0048F416 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				37C861CD20A13690001877AD /* PBlacklistTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -205,6 +216,7 @@
 			isa = PBXGroup;
 			children = (
 				370CAC3A20803DFA0048F416 /* PMineViewController.swift */,
+				37C861CB20A134C1001877AD /* PBlacklistViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -213,7 +225,7 @@
 			isa = PBXGroup;
 			children = (
 				3725F1A6207CD132006DF51C /* PStampsView.swift */,
-				37DF15D32088907000C1AC88 /* PMailTableViewCell.swift */,
+				37DF15D32088907000C1AC88 /* PLetterTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -221,8 +233,9 @@
 		3725F198207B7F5B006DF51C /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				3725F199207B7F5B006DF51C /* PMailViewController.swift */,
-				370CAC3C208050800048F416 /* PMailsViewController.swift */,
+				3725F199207B7F5B006DF51C /* PWriteLetterViewController.swift */,
+				37B0C729209AD287004880E9 /* PReadLetterViewController.swift */,
+				370CAC3C208050800048F416 /* PLettersViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -231,7 +244,7 @@
 			isa = PBXGroup;
 			children = (
 				3725F19E207C9021006DF51C /* PStamp.swift */,
-				370CAC2E207F38B90048F416 /* PMail.swift */,
+				370CAC2E207F38B90048F416 /* PLetter.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -331,6 +344,8 @@
 			children = (
 				37727AB920639E840097C599 /* Assets.xcassets */,
 				37727ABE20639E840097C599 /* Info.plist */,
+				3700CE6A20B7ECCD009C1846 /* Past-Bridging-Header.h */,
+				3700CE6B20B7ECCD009C1846 /* Past.entitlements */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -417,8 +432,8 @@
 		37727ACB20639FA30097C599 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				3707148620BBACCB00A9AAE6 /* xingkai.ttf */,
 				373CACD0208EDAAF0043088B /* Payment */,
-				37BD16B02087216500952751 /* xingkai.ttf */,
 				37E082D9207B488200BC51EC /* Mail */,
 			);
 			path = Resources;
@@ -448,6 +463,7 @@
 			children = (
 				37727AD52063A4660097C599 /* PLoginViewController.swift */,
 				370B6FE72074B837007873A9 /* PProfileViewController.swift */,
+				374ADDEC20A1F71400ACB92B /* PBindPhoneViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -545,9 +561,13 @@
 				TargetAttributes = {
 					37727AAE20639E840097C599 = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 0930;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
+							com.apple.Push = {
 								enabled = 1;
 							};
 						};
@@ -579,6 +599,7 @@
 			files = (
 				3725F1A4207CA1FF006DF51C /* mail_envelope_passed@2x.png in Resources */,
 				37E082E1207B488200BC51EC /* mail_envelope_stampZone@3x.png in Resources */,
+				3707148720BBACCB00A9AAE6 /* xingkai.ttf in Resources */,
 				37E082E5207B488200BC51EC /* mail_envelope_stampZone@2x.png in Resources */,
 				3725F1A5207CA1FF006DF51C /* mail_envelope_passed@3x.png in Resources */,
 				37E25B8B208B75B800575CE0 /* mail_envelope_top@3x.png in Resources */,
@@ -587,7 +608,6 @@
 				37727ABA20639E840097C599 /* Assets.xcassets in Resources */,
 				373CACD3208EDAAF0043088B /* payment_icon@3x.png in Resources */,
 				37E25B88208B75B800575CE0 /* mail_envelope_bottom@3x.png in Resources */,
-				37BD16B12087216500952751 /* xingkai.ttf in Resources */,
 				37E25B89208B75B800575CE0 /* mail_envelope_top@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -665,15 +685,17 @@
 				37727ADC2063A9730097C599 /* UIColorExtension.swift in Sources */,
 				370CAC3B20803DFA0048F416 /* PMineViewController.swift in Sources */,
 				3717C924207270A0004551DC /* PUser.swift in Sources */,
-				3725F19A207B7F5B006DF51C /* PMailViewController.swift in Sources */,
+				3725F19A207B7F5B006DF51C /* PWriteLetterViewController.swift in Sources */,
 				3717C92220720DB8004551DC /* PDataModel.swift in Sources */,
 				3725F1A7207CD132006DF51C /* PStampsView.swift in Sources */,
-				370CAC3D208050800048F416 /* PMailsViewController.swift in Sources */,
-				370CAC2F207F38B90048F416 /* PMail.swift in Sources */,
+				37B0C72A209AD287004880E9 /* PReadLetterViewController.swift in Sources */,
+				370CAC3D208050800048F416 /* PLettersViewController.swift in Sources */,
+				370CAC2F207F38B90048F416 /* PLetter.swift in Sources */,
 				37725FE52071D10200A2FADC /* PNavigationController.swift in Sources */,
 				37727ACD2063A04A0097C599 /* PConstants.swift in Sources */,
 				379F3DB8206D31A400668839 /* Entity.swift in Sources */,
 				373CACC7208EC4670043088B /* PPaymentViewController.swift in Sources */,
+				37C861CE20A13690001877AD /* PBlacklistTableViewCell.swift in Sources */,
 				373CACC9208EC7160043088B /* PProductsView.swift in Sources */,
 				37FE8A2C2077A13500748284 /* PTextFieldController.swift in Sources */,
 				370CAC31208037ED0048F416 /* PMainViewController.swift in Sources */,
@@ -686,11 +708,13 @@
 				3717C92020720ACA004551DC /* PRefreshTableViewController.swift in Sources */,
 				37FE8A2E2077A14600748284 /* PTextViewController.swift in Sources */,
 				3735B4C1207A0813007EDDF3 /* UIBarButtonItemExtension.swift in Sources */,
+				374ADDED20A1F71400ACB92B /* PBindPhoneViewController.swift in Sources */,
 				37727ADE2063B2C20097C599 /* PTextField.swift in Sources */,
 				37FE8A27207734BC00748284 /* PPlaceholderTextView.swift in Sources */,
 				37727ADA2063A6050097C599 /* UIViewExtention.swift in Sources */,
 				37B261CA2067F43600D0F943 /* PHttpManager.swift in Sources */,
 				370B6FE82074B837007873A9 /* PProfileViewController.swift in Sources */,
+				37C861CC20A134C1001877AD /* PBlacklistViewController.swift in Sources */,
 				37B261CE2067F5A900D0F943 /* StringExtension.swift in Sources */,
 				370B6FE2207494B4007873A9 /* PLoadMoreView.swift in Sources */,
 				37E25B7F208B329100575CE0 /* PWebViewController.swift in Sources */,
@@ -700,7 +724,7 @@
 				370CAC36208039F30048F416 /* PFriendsViewController.swift in Sources */,
 				37E25B7D208B20CC00575CE0 /* StringExtention.swift in Sources */,
 				374241F2206407670074FDE2 /* NSStringExtension.swift in Sources */,
-				37DF15D42088907000C1AC88 /* PMailTableViewCell.swift in Sources */,
+				37DF15D42088907000C1AC88 /* PLetterTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -824,6 +848,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "Past/Supporting Files/Past.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer: Liang Jiang (K3SZ2G66X2)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 57ZK8687SF;
@@ -834,6 +860,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "d8288868-91bb-4dc8-bf8c-991b3ba535e8";
 				PROVISIONING_PROFILE_SPECIFIER = past_development;
+				SWIFT_OBJC_BRIDGING_HEADER = "Past/Supporting Files/Past-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -845,6 +873,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "Past/Supporting Files/Past.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Liang Jiang (57ZK8687SF)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 57ZK8687SF;
@@ -853,8 +883,9 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jiangliang.Past;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "02b0ab29-6512-4d60-80c4-afd8c524b865";
-				PROVISIONING_PROFILE_SPECIFIER = past_adhoc;
+				PROVISIONING_PROFILE = "b15c4e42-a8f0-4f53-be8a-a5083d493f00";
+				PROVISIONING_PROFILE_SPECIFIER = distribution;
+				SWIFT_OBJC_BRIDGING_HEADER = "Past/Supporting Files/Past-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

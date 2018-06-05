@@ -13,21 +13,21 @@ class PTextField: UITextField {
     override var placeholder: String? {
         didSet {
             if let holder = placeholder {
-                let attributedString = NSMutableAttributedString(string: holder, attributes: [NSAttributedStringKey.foregroundColor: UIColor.colorWith(hex: "f3f3f3", alpha: 1)])
+                let attributedString = NSMutableAttributedString(string: holder, attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
                 self.attributedPlaceholder = attributedString
             }
         }
     }
     
     override func textRect(forBounds bounds: CGRect) -> CGRect {
-        return bounds.offsetBy(dx: 5, dy: 2)
+        return bounds.insetBy(dx: 10, dy: 2)
     }
     
     override func editingRect(forBounds bounds: CGRect) -> CGRect {
-        return bounds.offsetBy(dx: 5, dy: 2)
+        return bounds.insetBy(dx: 10, dy: 2)
     }
     
     override func placeholderRect(forBounds bounds: CGRect) -> CGRect {
-        return bounds.offsetBy(dx: 5, dy: 2)
+        return bounds.insetBy(dx: 10, dy: 2)
     }
 }

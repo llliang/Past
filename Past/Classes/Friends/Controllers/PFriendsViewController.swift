@@ -9,27 +9,56 @@
 import UIKit
 
 class PFriendsViewController: PRefreshTableViewController<PUser, [PUser]> {
+    
+    var unreads: Array<Array<Int>>?
 
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     override func viewDidLoad() {
         dataModel.url = "/friends/friends"
+        dataModel.limited = 1000
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(super.refresh), name: NSNotification.Name(rawValue: "app.past.post.letter"), object: nil)
         
+        NotificationCenter.default.addObserver(self, selector: #selector(super.refresh), name: NSNotification.Name.init("app.past.add.blacklist"), object: nil)
     }
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    
+    override func refresh() {
+        super.refresh()
+        let mainController = self.tabBarController as! PMainViewController
+        mainController.loadUnreads()
+    }
+    
+    override func refreshTableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let identifier = "friends"
         var cell = tableView.dequeueReusableCell(withIdentifier: identifier) as? PTableViewCell
         if cell == nil {
-            cell = PTableViewCell(style: .default, reuseIdentifier: identifier)
+            cell = PTableViewCell(style: [.description, .content], reuseIdentifier: identifier)
         }
         let user = dataModel.item(ofIndex: indexPath.row) as? PUser
-        cell?.textLabel?.font = PFont(size: 16)
-        cell?.textLabel?.text = user?.nickname
+        
+        cell?.leftLabel?.text = user?.nickname
+        
+        cell?.rightLabel?.textColor = UIColor.textColor
+        cell?.rightLabel?.text = ""
+        
+        if let uns = self.unreads {
+            for unread in uns {
+                if unread[0] == user?.userId {
+                    cell?.rightLabel?.textColor = UIColor.redColor
+                    cell?.rightLabel?.text = "\(unread[1])"
+                }
+            }
+        }
+        
         return cell!
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let controller = PMailsViewController()
+    override func refreshTableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let controller = PLettersViewController()
         controller.other = dataModel.item(ofIndex: indexPath.row) as? PUser
         self.navigationController?.pushViewController(controller, animated: true)
     }

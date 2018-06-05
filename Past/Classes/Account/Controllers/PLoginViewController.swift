@@ -54,6 +54,8 @@ class PLoginViewController: PBaseViewController {
         // 手机号
         mobileTextField = PTextField(frame: CGRect(x: 32, y: label.bottom + 40, width: containerView!.width - 64, height: 44))
         mobileTextField?.backgroundColor = UIColor.greenColor
+        mobileTextField?.layer.cornerRadius = 8
+        mobileTextField?.layer.masksToBounds = true
         mobileTextField?.textColor = UIColor.white
         mobileTextField?.font = PFont(size: 16)
         mobileTextField?.placeholder = "手机号"
@@ -62,8 +64,10 @@ class PLoginViewController: PBaseViewController {
         containerView?.addSubview(mobileTextField!)
         
         // 验证码
-        codeTextField = PTextField(frame: CGRect(x: mobileTextField!.left, y: mobileTextField!.bottom + 10, width: mobileTextField!.width - 50, height: mobileTextField!.height))
+        codeTextField = PTextField(frame: CGRect(x: mobileTextField!.left, y: mobileTextField!.bottom + 10, width: mobileTextField!.width, height: mobileTextField!.height))
         codeTextField?.backgroundColor = UIColor.greenColor
+        codeTextField?.layer.cornerRadius = 8
+        codeTextField?.layer.masksToBounds = true
         codeTextField?.textColor = UIColor.white
         codeTextField?.font = PFont(size: 16)
         codeTextField?.placeholder = "验证码"
@@ -72,16 +76,18 @@ class PLoginViewController: PBaseViewController {
         containerView?.addSubview(codeTextField!)
         
         // 获取验证码button
-        codeButton = UIButton(frame: CGRect(x: codeTextField!.right, y: codeTextField!.top + 5, width: 60, height: codeTextField!.height - 10))
-        codeButton?.setTitle("验证码", for: .normal)
+        codeButton = UIButton(frame: CGRect(x: codeTextField!.right - 80, y: codeTextField!.top, width: 70, height: codeTextField!.height))
+        codeButton?.setTitle("获取验证码", for: .normal)
+        codeButton?.contentHorizontalAlignment = .right
         codeButton?.titleLabel?.font = PFont(size: 14)
-        codeButton?.setTitleColor(UIColor.titleColor, for: .normal)
+        codeButton?.setTitleColor(UIColor.white, for: .normal)
         codeButton?.addTarget(self, action: #selector(getCode), for: .touchUpInside)
         containerView?.addSubview(codeButton!)
         
         let loginBtn = UIButton(frame: CGRect(x: 32, y: codeTextField!.bottom + 20, width: containerView!.width - 64, height: 44))
         loginBtn.backgroundColor = UIColor.greenColor
-        
+        loginBtn.layer.cornerRadius = 8
+        loginBtn.layer.masksToBounds = true
         loginBtn.titleLabel?.font = PFont(size: 16)
         loginBtn.setTitle("登录", for: .normal)
         loginBtn.setTitleColor(UIColor.white, for: .normal)
@@ -105,11 +111,19 @@ class PLoginViewController: PBaseViewController {
         protocolBtn.setTitleColor(UIColor.greenColor, for: .normal)
         protocolBtn.addTarget(self, action: #selector(lookupProtocol), for: .touchUpInside)
         
-        protocolLabel.left = (containerView!.width - (prefixWidth + suffixWidth)) / 2.0
+//        protocolLabel.left = (containerView!.width - (prefixWidth + suffixWidth)) / 2.0
         protocolLabel.width = prefixWidth
         protocolBtn.left = protocolLabel.right
         protocolBtn.width = suffixWidth
         containerView?.height = protocolLabel.bottom
+        
+        let visitorBtn = UIButton(frame: CGRect(x: containerView!.width - 32 - 60, y: protocolBtn.top, width: 60, height: protocolBtn.height))
+        visitorBtn.titleLabel?.font = protocolLabel.font
+        visitorBtn.setTitleColor(UIColor.greenColor, for: .normal)
+        visitorBtn.setTitle("游客登录", for: .normal)
+        visitorBtn.contentHorizontalAlignment = .right
+        visitorBtn.addTarget(self, action: #selector(visitorLogin), for: .touchUpInside)
+        containerView?.addSubview(visitorBtn)
         
         containerView?.center = CGPoint(x: self.view.width/2.0, y: self.view.height/2.0 - 150)
     }
@@ -121,21 +135,26 @@ class PLoginViewController: PBaseViewController {
         }
     }
     
-    @objc func getCode() {
+    @objc func getCode(btn: UIButton) {
         
         if !self.validateMobile(mobile: mobileTextField?.text) {
             Hud.show(content: "请输入正确的手机号")
             return
         }
-        
+        btn.isUserInteractionEnabled = false
         PHttpManager.requestAsynchronous(url: "/mobile/sendCode", method: .get, parameters:["mobile": mobileTextField!.text!]) { result in
-            
+            if let error = result.error {
+                Hud.show(content: error.domain)
+                btn.isUserInteractionEnabled = true
+                return
+            }
             if result.code != 200 {
+                btn.isUserInteractionEnabled = true
                 Hud.show(content: result.message)
+                
             } else {
                 self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.countDown), userInfo: nil, repeats: true)
                 self.codeButton?.setTitle(String(self.countDownNumber), for: .normal)
-                self.codeButton?.isUserInteractionEnabled = false
                 
                 Hud.show(content: "验证码已发送")
             }
@@ -146,7 +165,7 @@ class PLoginViewController: PBaseViewController {
 //        print("\(countDownNumber)")
         countDownNumber = countDownNumber - 1
         if countDownNumber <= 0 {
-            codeButton?.setTitle("验证码", for: .normal)
+            codeButton?.setTitle("获取验证码", for: .normal)
             countDownNumber = 59
             timer?.invalidate()
             timer = nil
@@ -172,7 +191,8 @@ class PLoginViewController: PBaseViewController {
         return count > 0;
     }
     
-    @objc func login() {
+    @objc func login(btn: UIButton) {
+        
         if !self.validateMobile(mobile: mobileTextField?.text) {
             Hud.show(content: "请输入正确的手机号")
             return
@@ -182,8 +202,11 @@ class PLoginViewController: PBaseViewController {
             Hud.show(content: "请输入正确的验证码")
             return
         }
-   
+        
+        btn.isUserInteractionEnabled = false
+        
         PHttpManager.requestAsynchronous(url: "/account/login", method: .post, parameters:["mobile":mobileTextField!.text!, "code": codeTextField!.text!]) { result in
+            btn.isUserInteractionEnabled = true
             if result.error != nil {
                 Hud.show(content: (result.error?.description)!)
                 return
@@ -198,13 +221,46 @@ class PLoginViewController: PBaseViewController {
                     profileController.user = PUserSession.instance.session?.user
                     profileController.title = "完善个人信息"
                     let navController = PNavigationController(rootViewController: profileController)
-                    profileController.isPoped = false
                     self.present(navController, animated: true, completion: nil)
                 } else {
                     NotificationCenter.default.post(name: PUserSessionChanged, object: nil, userInfo: nil)
                 }
+                self.setJPUSHAlias(userId: PUserSession.instance.session!.user!.userId)
             }
         }
+    }
+    
+    @objc func visitorLogin(btn: UIButton) {
+        btn.isUserInteractionEnabled = false
+        PHttpManager.requestAsynchronous(url: "/account/visitorLogin", method: .post, parameters: nil) { result in
+            btn.isUserInteractionEnabled = true
+            if result.error != nil {
+                Hud.show(content: (result.error?.description)!)
+                return
+            }
+            if result.code != 200 {
+                Hud.show(content: result.message)
+            } else {
+                PUserSession.instance.updateSession(dic: result.data! as! Dictionary<String, Any>)
+                if (PUserSession.instance.session?.register)! {
+                    let profileController = PProfileViewController()
+                    profileController.user = PUserSession.instance.session?.user
+                    profileController.title = "完善个人信息"
+                    let navController = PNavigationController(rootViewController: profileController)
+                    self.present(navController, animated: true, completion: nil)
+                } else {
+                    NotificationCenter.default.post(name: PUserSessionChanged, object: nil, userInfo: nil)
+                }
+                
+                self.setJPUSHAlias(userId: PUserSession.instance.session!.user!.userId)
+            }
+        }
+    }
+    
+    func setJPUSHAlias(userId: Int) {
+        JPUSHService.setAlias("wx_\(userId)", completion: { (iResCode, iAlias, req) in
+            
+        }, seq: userId)
     }
     
     @objc func textFieldDidChange(textField: UITextField) {

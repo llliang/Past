@@ -28,6 +28,7 @@ class PTableViewCell : UITableViewCell {
     init(style: PTableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: .default, reuseIdentifier: reuseIdentifier)
         self.selectionStyle = .none
+        self.contentView.backgroundColor = UIColor.tintColor
         
         if style.contains(.default) {
             return
