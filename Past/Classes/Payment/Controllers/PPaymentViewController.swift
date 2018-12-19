@@ -115,7 +115,7 @@ class PPaymentViewController: PBaseViewController, PProductsViewDelegate, SKProd
     
     @objc func purchaseNotice() {
         let webController = PWebViewController()
-        webController.url = "http://p6yj8z7ry.bkt.clouddn.com/%E5%85%85%E5%80%BC%E9%A1%BB%E7%9F%A5.pdf"
+        webController.url = PConfigManager.manager.value(forKey: "rechargeProtocol")
         webController.title = "充值须知"
         let navigation = PNavigationController(rootViewController: webController)
         

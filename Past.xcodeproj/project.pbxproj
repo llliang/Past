@@ -69,6 +69,7 @@
 		37FE8A2C2077A13500748284 /* PTextFieldController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FE8A2B2077A13500748284 /* PTextFieldController.swift */; };
 		37FE8A2E2077A14600748284 /* PTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FE8A2D2077A14600748284 /* PTextViewController.swift */; };
 		37FE8A302077A90A00748284 /* PTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FE8A2F2077A90A00748284 /* PTableViewCell.swift */; };
+		EC98A17221CA8BA700F4BA46 /* PConfigManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC98A17121CA8BA700F4BA46 /* PConfigManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -140,6 +141,7 @@
 		44D828AB9ADD7EECA1E3B6F0 /* Pods-Past.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Past.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Past/Pods-Past.debug.xcconfig"; sourceTree = "<group>"; };
 		89A9C4B270563D442B064B84 /* Pods_Past.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Past.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF04B4FF1E790812F9880B32 /* Pods-Past.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Past.release.xcconfig"; path = "Pods/Target Support Files/Pods-Past/Pods-Past.release.xcconfig"; sourceTree = "<group>"; };
+		EC98A17121CA8BA700F4BA46 /* PConfigManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PConfigManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -400,6 +402,7 @@
 				37727AD72063A4980097C599 /* PUserSession.swift */,
 				37B261C92067F43600D0F943 /* PHttpManager.swift */,
 				37A56826206B31D3009F5B63 /* PCacheManager.swift */,
+				EC98A17121CA8BA700F4BA46 /* PConfigManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -537,7 +540,6 @@
 				37727AAC20639E840097C599 /* Frameworks */,
 				37727AAD20639E840097C599 /* Resources */,
 				13507A2FA7DD2610CA3303D3 /* [CP] Embed Pods Frameworks */,
-				56F46BCDD7565F7BF365B920 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -561,7 +563,7 @@
 				TargetAttributes = {
 					37727AAE20639E840097C599 = {
 						CreatedOnToolsVersion = 9.2;
-						LastSwiftMigration = 0930;
+						LastSwiftMigration = 1010;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.InAppPurchase = {
@@ -637,21 +639,6 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Past/Pods-Past-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		56F46BCDD7565F7BF365B920 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Past/Pods-Past-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		F6EECAB3E9BCFB24E80F6C5F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -695,6 +682,7 @@
 				37727ACD2063A04A0097C599 /* PConstants.swift in Sources */,
 				379F3DB8206D31A400668839 /* Entity.swift in Sources */,
 				373CACC7208EC4670043088B /* PPaymentViewController.swift in Sources */,
+				EC98A17221CA8BA700F4BA46 /* PConfigManager.swift in Sources */,
 				37C861CE20A13690001877AD /* PBlacklistTableViewCell.swift in Sources */,
 				373CACC9208EC7160043088B /* PProductsView.swift in Sources */,
 				37FE8A2C2077A13500748284 /* PTextFieldController.swift in Sources */,

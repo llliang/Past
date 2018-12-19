@@ -53,7 +53,7 @@ class PCacheManager: NSObject {
 //        }
 //    }
     
-    func setCache<T: Entity>(cache: T, forKey: String) -> Bool {
+    @discardableResult func setCache<T: Entity>(cache: T, forKey: String) -> Bool {
         let d = cache.toJson()
         let string = String(data: d!, encoding: String.Encoding.utf8)
         do {

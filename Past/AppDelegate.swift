@@ -27,7 +27,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // 极光推送启动
         self.registerJPUSH(withOption: launchOptions)
         
+        // 获取配置文件
+        self.config()
+        
         return true
+    }
+    
+    func config() {
+        PConfigManager.manager.updateConfig()
     }
 
     func registerJPUSH(withOption: [AnyHashable : Any]!) {
@@ -87,6 +94,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 extension AppDelegate: JPUSHRegisterDelegate{
+    func jpushNotificationCenter(_ center: UNUserNotificationCenter!, openSettingsFor notification: UNNotification?) {
+        
+    }
+    
     
     func jpushNotificationCenter(_ center: UNUserNotificationCenter!, willPresent notification: UNNotification!, withCompletionHandler completionHandler: ((Int) -> Void)!) {
         print(">JPUSHRegisterDelegate jpushNotificationCenter willPresent");
