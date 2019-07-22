@@ -537,7 +537,6 @@
 				37727AAC20639E840097C599 /* Frameworks */,
 				37727AAD20639E840097C599 /* Resources */,
 				13507A2FA7DD2610CA3303D3 /* [CP] Embed Pods Frameworks */,
-				56F46BCDD7565F7BF365B920 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -621,7 +620,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Past/Pods-Past-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Past/Pods-Past-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/SQLite.swift/SQLite.framework",
@@ -634,22 +633,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Past/Pods-Past-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		56F46BCDD7565F7BF365B920 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Past/Pods-Past-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Past/Pods-Past-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F6EECAB3E9BCFB24E80F6C5F /* [CP] Check Pods Manifest.lock */ = {
@@ -850,7 +834,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Past/Supporting Files/Past.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Liang Jiang (K3SZ2G66X2)";
+				CODE_SIGN_IDENTITY = "Apple Development: Liang Jiang (K3SZ2G66X2)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 57ZK8687SF;
 				INFOPLIST_FILE = "$(SRCROOT)/Past/Supporting Files/Info.plist";
@@ -875,7 +859,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Past/Supporting Files/Past.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Liang Jiang (57ZK8687SF)";
+				CODE_SIGN_IDENTITY = "Apple Development: Liang Jiang (K3SZ2G66X2)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 57ZK8687SF;
 				INFOPLIST_FILE = "$(SRCROOT)/Past/Supporting Files/Info.plist";
@@ -884,7 +868,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.jiangliang.Past;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "b15c4e42-a8f0-4f53-be8a-a5083d493f00";
-				PROVISIONING_PROFILE_SPECIFIER = distribution;
+				PROVISIONING_PROFILE_SPECIFIER = past_development;
 				SWIFT_OBJC_BRIDGING_HEADER = "Past/Supporting Files/Past-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;

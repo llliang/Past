@@ -14,7 +14,8 @@ import Alamofire
     let production = false
 //let HostName = "http://192.168.3.92:3000" // 公司
 //let HostName = "http://192.168.0.103:3000" // 家
-    let HostName = "https://www.haomin.pub" // 生产
+    let HostName = "https://www.taeho.cn" // 生产
+//let HostName = "https://www.haomin.pub" // 生产
 #else
     let production = true
     let HostName = "https://www.haomin.pub" // 生产
