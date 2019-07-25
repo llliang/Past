@@ -134,7 +134,7 @@ class PMineViewController: PBaseViewController, UITableViewDelegate, UITableView
             
         } else {
             let webController = PWebViewController()
-            webController.url = "http://p6yj8z7ry.bkt.clouddn.com/%E7%94%A8%E6%88%B7%E5%8D%8F%E8%AE%AE.pdf"
+            webController.url = PConfigManager.manager.value(forKey: "userProtocol")
             webController.title = "用户协议"
             self.navigationController?.pushViewController(webController, animated: true)
         }

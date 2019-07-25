@@ -14,10 +14,10 @@ import Alamofire
     let production = false
 //let HostName = "http://192.168.3.92:3000" // 公司
 //let HostName = "http://192.168.0.100:3000" // 家
-    let HostName = "https://www.haomin.pub" // 生产
+    let HostName = "https://app.taeho.cn" // 生产
 #else
     let production = true
-    let HostName = "https://www.haomin.pub" // 生产
+    let HostName = "https://app.taeho.cn" // 生产
 #endif
 
 class PHttpManager {
@@ -40,24 +40,6 @@ class PHttpManager {
         if let _ = token {
             params!["token"] = token
         }
-        
-        #if DEBUG
-            var string = "?"// "?softversion=\(Util.appVersion())&systype=ios&sysversion=\(Util.systemVersion())"
-            if let ps = params {
-                for key in ps.keys {
-                    var value: String
-                    let val = ps[key]
-                    if val is NSNumber {
-                        value = NSString(format: "%@", val as! NSNumber) as String
-                    } else {
-                        value = val as! String
-                    }
-                    string = string + key + "=" + value + "&"
-                }
-            }
-            string = string.substring(toIndex: string.count - 1)
-            print(HostName + url + string)
-        #endif
 
         Alamofire.request((HostName + url), method:method, parameters: params, encoding: URLEncoding.default, headers: nil).responseJSON { (response) in
             if response.result.isSuccess {
@@ -68,6 +50,9 @@ class PHttpManager {
                     Hud.show(content: result["exception"] as! String)
                 } else {
 //                   completion(result, nil)
+                    
+                    print("\n============\n url = \(url)\n\n params = \n \(String(describing: params))\n=============\n http response =\n \(result)\n===============\n\n")
+                    
                     completion(Result(code:Int(truncating: result["code"] as! NSNumber), data: result["data"], message: result["message"] as! String, error: nil))
                     if result["code"]?.int64Value == -10001 {
                         PUserSession.instance.exitSession()
