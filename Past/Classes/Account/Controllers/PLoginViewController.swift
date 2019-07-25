@@ -275,7 +275,7 @@ class PLoginViewController: PBaseViewController {
                     textField.text = text.substring(toIndex: 6)
                 }
             }
-        }
+        } 
     }
     
     @objc func lookupProtocol() {
