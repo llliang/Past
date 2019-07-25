@@ -35,9 +35,15 @@ class PStampView: UIButton {
     var stamp = PStamp() {
         didSet {
             if let url = stamp.image {
-                self.kf.setImage(with: URL(string: url), for: .normal, placeholder: nil, options: nil, progressBlock: nil) { (image, error, type, url) in
-                    self.setImage(image, for: .highlighted)
+                self.kf.setImage(with: URL(string: url), for: .normal, placeholder: nil, options: nil, progressBlock: nil) { (result) in
+                    switch result {
+                    case .success(let value):
+                        self.setImage(value.image, for: .highlighted)
+                    case .failure(_):
+                        break
+                    }
                 }
+                
                 percentLabel?.text = "\(stamp.price ?? 0)₩"
                 let day = stamp.period!/(24*60*60)
                 let hour = (stamp.period! - day*24*60*60)/(60*60)

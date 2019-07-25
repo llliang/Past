@@ -52,7 +52,7 @@ class PWriteLetterViewController: PBaseViewController, PStampsViewDelegate, UITe
     private var animating: Bool = false
     
     deinit {
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: PUserSessionChanged, object: nil)
     }
     
@@ -70,7 +70,7 @@ class PWriteLetterViewController: PBaseViewController, PStampsViewDelegate, UITe
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "塞入信封", style: .right, target: self, action: #selector(putIntoMailer))
         
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(reloadBalance), name: PUserSessionChanged, object: nil)
         
@@ -94,7 +94,7 @@ class PWriteLetterViewController: PBaseViewController, PStampsViewDelegate, UITe
         textView = PPlaceholderTextView(frame: CGRect(x: 0, y: senderLabel!.bottom, width: backView!.width, height: backView!.height - senderLabel!.bottom))
         textView?.delegate = self
         textView?.backgroundColor = UIColor.clear
-        textView?.contentInset = UIEdgeInsetsMake(0, 10, 0, 10)
+        textView?.contentInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
         textView?.font = PFont(size: 16)
         textView?.lineSpacing = 6
         backView?.addSubview(textView!)
@@ -204,7 +204,7 @@ class PWriteLetterViewController: PBaseViewController, PStampsViewDelegate, UITe
         paragraphStyle.lineSpacing = 10
         paragraphStyle.alignment = .right
         
-        signLabel?.attributedText = NSAttributedString(string: text, attributes: [NSAttributedStringKey.font: signLabel!.font!, NSAttributedStringKey.paragraphStyle: paragraphStyle])
+        signLabel?.attributedText = NSAttributedString(string: text, attributes: [NSAttributedString.Key.font: signLabel!.font!, NSAttributedString.Key.paragraphStyle: paragraphStyle])
     }
     
     func loadStamps() {
@@ -233,7 +233,7 @@ class PWriteLetterViewController: PBaseViewController, PStampsViewDelegate, UITe
             }
             
             textView?.resignFirstResponder()
-            NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+            NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
 
             self.view.isUserInteractionEnabled = false
             
@@ -280,7 +280,7 @@ class PWriteLetterViewController: PBaseViewController, PStampsViewDelegate, UITe
     }
     
     @objc func keyboardWillShow(notification: Notification) {
-        let rect = notification.userInfo![UIKeyboardFrameEndUserInfoKey] as! CGRect
+        let rect = notification.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! CGRect
         
         backView?.height = self.view.height - rect.height
         signLabel!.top = backView!.height - signLabel!.height
@@ -301,11 +301,19 @@ class PWriteLetterViewController: PBaseViewController, PStampsViewDelegate, UITe
             self.present(alertController, animated: true, completion: nil)
             return
         }
-        stampImageView?.kf.setImage(with: URL(string: (stamp.image)!), placeholder: nil, options: nil, progressBlock: nil, completionHandler: { (image, error, type, url) in
-            self.stamp = stamp
-            self.status = .waitingPost
-            self.balanceLabel?.text = "账户余额：\(userBalance ?? 0)₩ - \(stamp.price ?? 0)₩"
+//        stampImageView?.kf.setImage(with: URL(string: (stamp.image)!), placeholder: nil, options: nil, progressBlock: nil, completionHandler: { (image, error, type, url) in
+//        })
+//
+        stampImageView?.kf.setImage(with: URL(string: (stamp.image)!), placeholder: nil, options: nil, progressBlock: nil, completionHandler: { (result) in
+            switch result {
+            case .success(_):
+                self.stamp = stamp
+                self.status = .waitingPost
+                self.balanceLabel?.text = "账户余额：\(userBalance ?? 0)₩ - \(stamp.price ?? 0)₩"
+            case .failure(_): break
+            }
         })
+
     }
     
     func post() {

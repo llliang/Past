@@ -19,7 +19,7 @@ class PMainViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(loadUnreads), name: Notification.Name.UIApplicationWillEnterForeground, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(loadUnreads), name: UIApplication.willEnterForegroundNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(loadUnreads), name: Notification.Name.init(rawValue: "app.past.need.refresh.unread"), object: nil)
         
         var controllers = [PBaseViewController]()
@@ -38,8 +38,8 @@ class PMainViewController: UITabBarController {
         for i in 0..<3 {
             let item = UITabBarItem()
             item.title = titles[i]
-            item.setTitleTextAttributes([NSAttributedStringKey.foregroundColor: UIColor.textColor, NSAttributedStringKey.font: PFont(size: 18)!], for: .normal)
-            item.setTitleTextAttributes([NSAttributedStringKey.font: PFont(size: 18)!, NSAttributedStringKey.foregroundColor: UIColor.greenColor], for: .selected)
+            item.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.textColor, NSAttributedString.Key.font: PFont(size: 18)!], for: .normal)
+            item.setTitleTextAttributes([NSAttributedString.Key.font: PFont(size: 18)!, NSAttributedString.Key.foregroundColor: UIColor.greenColor], for: .selected)
 
             item.image = nil
             item.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: -10)

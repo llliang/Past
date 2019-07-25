@@ -166,7 +166,7 @@ class HudView: UIView {
     }()
     
     lazy var hudActivityView: UIActivityIndicatorView? = {
-        let hudView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.whiteLarge)
+        let hudView = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.whiteLarge)
         hudView.autoresizingMask = [.flexibleTopMargin, .flexibleHeight]
         return hudView
     }()

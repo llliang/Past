@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 extension UIAlertController {
-    convenience init(title: String?, message: String?, actions: [String]?, cancel: String?, preferredStyle: UIAlertControllerStyle, handle: @escaping (_ index: Int) -> ()) {
+    convenience init(title: String?, message: String?, actions: [String]?, cancel: String?, preferredStyle: UIAlertController.Style, handle: @escaping (_ index: Int) -> ()) {
         
         self.init(title: title, message: message, preferredStyle: preferredStyle)
   

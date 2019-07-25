@@ -45,13 +45,13 @@ class PRefreshTableViewController<E: Entity, Type>: PBaseViewController, PRefres
     open func layoutSubviews() {
         
         tableView = UITableView(frame: self.view.bounds, style: .plain)
-        tableView?.autoresizingMask = UIViewAutoresizing.flexibleHeight
+        tableView?.autoresizingMask = .flexibleHeight
         tableView?.backgroundColor = UIColor.clear
         tableView?.delegate = self
         tableView?.dataSource = self
         tableView?.tableFooterView = UIView()
 //        tableView?.contentInset = UIEdgeInsetsMake(10, 0, 0, 0)
-        tableView?.separatorStyle = UITableViewCellSeparatorStyle.singleLine
+        tableView?.separatorStyle = .singleLine
         self.view.addSubview(tableView!)
         
         tableView?.refreshControl = refreshControl
@@ -87,9 +87,9 @@ class PRefreshTableViewController<E: Entity, Type>: PBaseViewController, PRefres
         
         let cell = self.refreshTableView(tableView, cellForRowAt: indexPath)
         if indexPath.row == dataModel.itemCount - 1 {
-            cell.separatorInset = UIEdgeInsetsMake(0, self.view.width/2, 0, self.view.width/2)
+            cell.separatorInset = UIEdgeInsets(top: 0, left: self.view.width/2, bottom: 0, right: self.view.width/2)
         } else {
-            cell.separatorInset = UIEdgeInsetsMake(0, 15, 0, 0)
+            cell.separatorInset = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 0)
         }
         
         return cell

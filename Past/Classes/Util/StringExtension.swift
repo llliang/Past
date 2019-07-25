@@ -45,6 +45,6 @@ extension String {
     func size(font: UIFont, constrainedSize: CGSize) -> CGSize {
         let nString = self as NSString
         
-        return nString.boundingRect(with: constrainedSize, options: .usesLineFragmentOrigin, attributes: [NSAttributedStringKey.font:font], context: nil).size
+        return nString.boundingRect(with: constrainedSize, options: .usesLineFragmentOrigin, attributes: [NSAttributedString.Key.font:font], context: nil).size
     }
 }

@@ -846,7 +846,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = past_development;
 				SWIFT_OBJC_BRIDGING_HEADER = "Past/Supporting Files/Past-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -859,7 +859,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Past/Supporting Files/Past.entitlements";
-				CODE_SIGN_IDENTITY = "Apple Development: Liang Jiang (K3SZ2G66X2)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Liang Jiang (57ZK8687SF)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 57ZK8687SF;
 				INFOPLIST_FILE = "$(SRCROOT)/Past/Supporting Files/Info.plist";
@@ -868,9 +868,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.jiangliang.Past;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "b15c4e42-a8f0-4f53-be8a-a5083d493f00";
-				PROVISIONING_PROFILE_SPECIFIER = past_development;
+				PROVISIONING_PROFILE_SPECIFIER = past_distribution;
 				SWIFT_OBJC_BRIDGING_HEADER = "Past/Supporting Files/Past-Bridging-Header.h";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

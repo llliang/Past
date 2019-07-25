@@ -34,7 +34,7 @@ class PMineViewController: PBaseViewController, UITableViewDelegate, UITableView
     func layoutSubviews() {
         tableView = UITableView(frame: self.view.bounds, style: .grouped)
         
-        tableView?.autoresizingMask = UIViewAutoresizing.flexibleHeight
+        tableView?.autoresizingMask = .flexibleHeight
 //        tableView?.separatorStyle = UITableViewCellSeparatorStyle.singleLine
         tableView?.backgroundColor = UIColor.clear
         tableView?.delegate = self

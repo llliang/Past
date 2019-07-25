@@ -85,7 +85,7 @@ class PTableViewCell : UITableViewCell {
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if (object as! UILabel) == leftLabel {
 
-            let width = NSString(string: leftLabel!.text!).boundingRect(with: CGSize(width: CGFloat.greatestFiniteMagnitude, height: leftLabel!.height), options: .usesLineFragmentOrigin, attributes: [NSAttributedStringKey.font: leftLabel!.font], context: nil).width
+            let width = NSString(string: leftLabel!.text!).boundingRect(with: CGSize(width: CGFloat.greatestFiniteMagnitude, height: leftLabel!.height), options: .usesLineFragmentOrigin, attributes: [NSAttributedString.Key.font: leftLabel!.font!], context: nil).width
             leftLabel?.width = width
             rightLabel?.left = leftLabel!.right + 10
   

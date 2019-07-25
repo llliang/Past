@@ -11,6 +11,6 @@ import UIKit
 
 extension NSString {
     func size(withFont font: UIFont, constrainedSize: CGSize) -> CGSize {
-        return self.boundingRect(with: constrainedSize, options: .usesLineFragmentOrigin, attributes:[NSAttributedStringKey.font : font], context: nil).size
+        return self.boundingRect(with: constrainedSize, options: .usesLineFragmentOrigin, attributes:[NSAttributedString.Key.font : font], context: nil).size
     }
 }

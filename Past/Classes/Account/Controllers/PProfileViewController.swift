@@ -28,7 +28,7 @@ class PProfileViewController: PBaseViewController, UITableViewDelegate, UITableV
         tableView?.dataSource = self
         tableView?.tableFooterView = UIView()
         tableView?.backgroundColor = UIColor.clear
-        tableView?.contentInset = UIEdgeInsetsMake(10, 0, 0, 0)
+        tableView?.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
         self.view.addSubview(tableView!)
         self.title = "个人信息"
         isSelf = (user?.userId == PUserSession.instance.session?.user?.userId)
@@ -74,7 +74,7 @@ class PProfileViewController: PBaseViewController, UITableViewDelegate, UITableV
                 /// 通知相关界面更新数据
                 NotificationCenter.default.post(name: NSNotification.Name.init("app.past.add.blacklist"), object: nil)
                 
-                let alertController = UIAlertController(title: nil, message: "可在->相->黑名单 中取消拉黑", actions: nil, cancel: "我知道了", preferredStyle: UIAlertControllerStyle.alert, handle: { (index) in
+                let alertController = UIAlertController(title: nil, message: "可在->相->黑名单 中取消拉黑", actions: nil, cancel: "我知道了", preferredStyle: .alert, handle: { (index) in
                 })
                 self.navigationController?.viewControllers.last?.present(alertController, animated: true, completion: nil)
             }
@@ -127,7 +127,7 @@ class PProfileViewController: PBaseViewController, UITableViewDelegate, UITableV
             }
         }
         
-        cell?.separatorInset = UIEdgeInsetsMake(0, 15, 0, 0)
+        cell?.separatorInset = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 0)
         
         switch indexPath.row {
         case 0:
@@ -146,7 +146,7 @@ class PProfileViewController: PBaseViewController, UITableViewDelegate, UITableV
         default:
             cell?.leftLabel?.text = "自我介绍"
             cell?.rightLabel?.text = user?.description
-            cell?.separatorInset = UIEdgeInsetsMake(0, self.view.width/2, 0, self.view.width/2)
+            cell?.separatorInset = UIEdgeInsets(top: 0, left: self.view.width/2, bottom: 0, right: self.view.width/2)
         }
         return cell!
     }

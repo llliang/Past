@@ -15,7 +15,7 @@ class PPlaceholderTextView: UITextView {
             let paragraphStyle = NSMutableParagraphStyle()
             paragraphStyle.lineSpacing = lineSpacing
             paragraphStyle.firstLineHeadIndent = self.font!.pointSize*2
-            self.typingAttributes = [NSAttributedStringKey.font.rawValue: self.font!, NSAttributedStringKey.paragraphStyle.rawValue: paragraphStyle]
+            self.typingAttributes = [NSAttributedString.Key.font: self.font!, NSAttributedString.Key.paragraphStyle: paragraphStyle]
         }
     }
 
@@ -91,7 +91,7 @@ class PPlaceholderTextView: UITextView {
             self.contentInsetAdjustmentBehavior = .never
         }
         
-        NotificationCenter.default.addObserver(self, selector: #selector(textDidChangeForPlaceholder), name: NSNotification.Name.UITextViewTextDidChange, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(textDidChangeForPlaceholder), name: UITextView.textDidChangeNotification, object: nil)
     }
     
     @objc func textDidChangeForPlaceholder(notification: Notification) {

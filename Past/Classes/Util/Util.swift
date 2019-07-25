@@ -68,7 +68,7 @@ class Util{
     
     private class func barButton(title:String?, target:Any, action:Selector)->UIButton{
         let button = UIButton(type: .custom)
-        button.setTitle(title, for: UIControlState.normal)
+        button.setTitle(title, for: .normal)
         button.addTarget(target, action: action, for: .touchUpInside)
         return button
     }

@@ -20,7 +20,7 @@ extension UIBarButtonItem {
     convenience init(title: String, style: PBarButtonItemStyle, target: Any, action: Selector) {
         
         let t = title as NSString
-        let width: CGFloat = t.boundingRect(with: CGSize(width: CGFloat.greatestFiniteMagnitude, height: 44.0), options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: [NSAttributedStringKey.font: PFont(size: 16)!], context: nil).width
+        let width: CGFloat = t.boundingRect(with: CGSize(width: CGFloat.greatestFiniteMagnitude, height: 44.0), options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: [NSAttributedString.Key.font: PFont(size: 16)!], context: nil).width
         let btn = UIButton(frame: CGRect(x: 0, y: 0, width: max(50, width), height: 44))
         btn.setTitle(title, for: .normal)
         btn.titleLabel?.font = PFont(size: 16)

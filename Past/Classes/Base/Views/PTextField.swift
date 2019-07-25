@@ -13,7 +13,7 @@ class PTextField: UITextField {
     override var placeholder: String? {
         didSet {
             if let holder = placeholder {
-                let attributedString = NSMutableAttributedString(string: holder, attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
+                let attributedString = NSMutableAttributedString(string: holder, attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
                 self.attributedPlaceholder = attributedString
             }
         }

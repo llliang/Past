@@ -162,7 +162,7 @@ class PBindPhoneViewController: PBaseViewController {
                 self.invalidateTimer()
                 PUserSession.instance.updateSession(dic: result.data! as! Dictionary<String, Any>)
                 
-                let alertController = UIAlertController(title: nil, message: "绑定成功，以后可用该手机号登录该账号", actions: ["我知道了"], cancel: nil, preferredStyle: UIAlertControllerStyle.alert, handle: { (index) in
+                let alertController = UIAlertController(title: nil, message: "绑定成功，以后可用该手机号登录该账号", actions: ["我知道了"], cancel: nil, preferredStyle: .alert, handle: { (index) in
                     self.navigationController?.popViewController(animated: true)
                 })
                 self.present(alertController, animated: true, completion: nil)

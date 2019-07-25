@@ -46,7 +46,7 @@ class PLoginViewController: PBaseViewController {
         let attr = NSMutableAttributedString(string: text)
         let style = NSMutableParagraphStyle()
         style.lineSpacing = 6
-        attr.addAttribute(NSAttributedStringKey.paragraphStyle, value: style, range: NSMakeRange(0, attr.length))
+        attr.addAttribute(NSAttributedString.Key.paragraphStyle, value: style, range: NSMakeRange(0, attr.length))
         label.textColor = UIColor.titleColor
         label.attributedText = attr
         label.textAlignment = .center

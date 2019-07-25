@@ -37,7 +37,7 @@ class PTextFieldController: PBaseViewController, UITextFieldDelegate {
         textField?.text = text
         textField?.font = PFont(size: 16)
         textField?.textColor = UIColor.titleColor
-        textField?.clearButtonMode = UITextFieldViewMode.whileEditing
+        textField?.clearButtonMode = .whileEditing
         textField?.becomeFirstResponder()
         textField?.returnKeyType = UIReturnKeyType.done
         textField?.enablesReturnKeyAutomatically = true

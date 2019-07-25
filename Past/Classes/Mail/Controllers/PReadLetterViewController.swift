@@ -56,7 +56,7 @@ class PReadLetterViewController: PBaseViewController {
         paragraphStyle.firstLineHeadIndent = contentLabel!.font.pointSize*2
         container?.addSubview(contentLabel!)
         
-        contentLabel?.attributedText = NSAttributedString(string: letter!.content, attributes: [NSAttributedStringKey.font: PFont(size: 16)!, NSAttributedStringKey.paragraphStyle: paragraphStyle])
+        contentLabel?.attributedText = NSAttributedString(string: letter!.content, attributes: [NSAttributedString.Key.font: PFont(size: 16)!, NSAttributedString.Key.paragraphStyle: paragraphStyle])
         contentLabel?.height = contentLabel!.attributedText!.boundingRect(with: CGSize(width: contentLabel!.width, height: CGFloat.greatestFiniteMagnitude), options: .usesLineFragmentOrigin, context: nil).height
         
         
@@ -82,7 +82,7 @@ class PReadLetterViewController: PBaseViewController {
         paragraphStyle.lineSpacing = 10
         paragraphStyle.alignment = .right
         
-        signLabel?.attributedText = NSAttributedString(string: text, attributes: [NSAttributedStringKey.font: signLabel!.font!, NSAttributedStringKey.paragraphStyle: paragraphStyle])
+        signLabel?.attributedText = NSAttributedString(string: text, attributes: [NSAttributedString.Key.font: signLabel!.font!, NSAttributedString.Key.paragraphStyle: paragraphStyle])
     }
 
     @objc func writeLetter() {

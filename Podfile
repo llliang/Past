@@ -1,6 +1,6 @@
 
-
-target ‘Past’ do
+platform :ios, '10.0'
+target 'Past' do
     use_frameworks!
 
     pod 'Kingfisher'
