@@ -29,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // 获取配置文件
         self.config()
-        
+        printFonts()
         return true
     }
     

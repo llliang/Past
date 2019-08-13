@@ -69,6 +69,9 @@
 		37FE8A2C2077A13500748284 /* PTextFieldController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FE8A2B2077A13500748284 /* PTextFieldController.swift */; };
 		37FE8A2E2077A14600748284 /* PTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FE8A2D2077A14600748284 /* PTextViewController.swift */; };
 		37FE8A302077A90A00748284 /* PTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FE8A2F2077A90A00748284 /* PTableViewCell.swift */; };
+		DC78F28222FABA8100FFE7B3 /* fangzhengkaiti.TTF in Resources */ = {isa = PBXBuildFile; fileRef = DC78F28022FAB77400FFE7B3 /* fangzhengkaiti.TTF */; };
+		DC78F28322FABA8100FFE7B3 /* huawenlishu.TTF in Resources */ = {isa = PBXBuildFile; fileRef = DC78F28122FAB77400FFE7B3 /* huawenlishu.TTF */; };
+		DC78F28422FABA8100FFE7B3 /* huawenxinwei.TTF in Resources */ = {isa = PBXBuildFile; fileRef = DC78F27F22FAB77400FFE7B3 /* huawenxinwei.TTF */; };
 		EC98A17221CA8BA700F4BA46 /* PConfigManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC98A17121CA8BA700F4BA46 /* PConfigManager.swift */; };
 /* End PBXBuildFile section */
 
@@ -141,6 +144,9 @@
 		44D828AB9ADD7EECA1E3B6F0 /* Pods-Past.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Past.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Past/Pods-Past.debug.xcconfig"; sourceTree = "<group>"; };
 		89A9C4B270563D442B064B84 /* Pods_Past.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Past.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF04B4FF1E790812F9880B32 /* Pods-Past.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Past.release.xcconfig"; path = "Pods/Target Support Files/Pods-Past/Pods-Past.release.xcconfig"; sourceTree = "<group>"; };
+		DC78F27F22FAB77400FFE7B3 /* huawenxinwei.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = huawenxinwei.TTF; sourceTree = "<group>"; };
+		DC78F28022FAB77400FFE7B3 /* fangzhengkaiti.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = fangzhengkaiti.TTF; sourceTree = "<group>"; };
+		DC78F28122FAB77400FFE7B3 /* huawenlishu.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = huawenlishu.TTF; sourceTree = "<group>"; };
 		EC98A17121CA8BA700F4BA46 /* PConfigManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PConfigManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -436,6 +442,9 @@
 			isa = PBXGroup;
 			children = (
 				3707148620BBACCB00A9AAE6 /* xingkai.ttf */,
+				DC78F28022FAB77400FFE7B3 /* fangzhengkaiti.TTF */,
+				DC78F28122FAB77400FFE7B3 /* huawenlishu.TTF */,
+				DC78F27F22FAB77400FFE7B3 /* huawenxinwei.TTF */,
 				373CACD0208EDAAF0043088B /* Payment */,
 				37E082D9207B488200BC51EC /* Mail */,
 			);
@@ -599,6 +608,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC78F28222FABA8100FFE7B3 /* fangzhengkaiti.TTF in Resources */,
+				DC78F28322FABA8100FFE7B3 /* huawenlishu.TTF in Resources */,
+				DC78F28422FABA8100FFE7B3 /* huawenxinwei.TTF in Resources */,
 				3725F1A4207CA1FF006DF51C /* mail_envelope_passed@2x.png in Resources */,
 				37E082E1207B488200BC51EC /* mail_envelope_stampZone@3x.png in Resources */,
 				3707148720BBACCB00A9AAE6 /* xingkai.ttf in Resources */,

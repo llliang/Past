@@ -29,6 +29,9 @@
 	</dict>
 	<key>UIAppFonts</key>
 	<array>
+		<string>huawenxinwei.TTF</string>
+		<string>huawenlishu.TTF</string>
+		<string>fangzhengkaiti.TTF</string>
 		<string>xingkai.ttf</string>
 	</array>
 	<key>UIRequiredDeviceCapabilities</key>
